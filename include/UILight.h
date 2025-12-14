@@ -1,4 +1,6 @@
-#pragma once
+#ifndef UILIGHT_H
+#define UILIGHT_H
+
 #include "light.h"
 #include <imgui.h>
 #include <vector>
@@ -114,3 +116,5 @@ public:
         ImGui::DragFloat("OuterCutOff", &l.outerCutOff, 0.01f);
     }
 };
+
+#endif
