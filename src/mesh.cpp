@@ -9,7 +9,7 @@ Mesh::Mesh(std::vector<Vertex> vertices_, std::vector<GLuint> indices_, std::vec
 }
 
 void Mesh::setup(){
-
+	
     VAO.bind();
     VBO VBO(vertices);
     EBO EBO(indices);

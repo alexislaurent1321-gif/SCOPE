@@ -75,8 +75,8 @@ int main(){
     // -----------------------------
     //  Boucle de rendu
     // -----------------------------
-    static UICameraController uiCam(&context.cameraController);
-    static UIModel uiModel(&model1);
+    UICameraController uiCam(&context.cameraController);
+    UIModel uiModel(&model1);
     UILight uiLight;
 
     while (!glfwWindowShouldClose(context.window))
@@ -125,9 +125,7 @@ int main(){
         shader1.setUniform("projection", projection);
         shader1.setUniform("view", view);
         shader1.setUniform("model", model);
-        
         model1.draw(shader1);
-
 
         cubeLightShader.use();
         model = glm::translate(model, glm::vec3(0.f, 2.f, 0.f));
@@ -135,21 +133,14 @@ int main(){
         cubeLightShader.setUniform("view", view);
         cubeLightShader.setUniform("model", model);
 
-        // glm::vec3 lightColor{1.f};
-        // cubeLightShader.setVec3("lightColor", lightColor);
-        // PointLight light;
-        // light.apply(shader1, 0, "pointLight");
-        // cubeLight.draw(cubeLightShader);
-
-
         // Actualisation de l'UI
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        uiCam.DrawUI();
-        uiLight.drawUI();
-        uiModel.DrawUI();
+        uiCam.draw();
+        uiLight.draw();
+        uiModel.draw();
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

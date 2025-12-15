@@ -6,7 +6,7 @@ Model::Model(std::string const &path){
 
 void Model::draw(Shader &shader){
     for(Mesh& mesh : meshes){
-        shader.setUniform("model", mesh.getModelMatrix());
+        shader.setUniform("model", getModelMatrix() * mesh.getModelMatrix());
         mesh.draw(shader);
     }
 }
@@ -34,33 +34,29 @@ void Model::load(std::string const &path){
 // processes a node in a recursive fashion. Processes each individual mesh located at the node and repeats this process on its children nodes (if any).
 void Model::processNode(aiNode *node, const aiScene *scene, glm::mat4 parentTransform)
 {
-    glm::mat4 transform = AiMatrix4x4ToGlm(&node -> mTransformation);
+    glm::mat4 transform = AiMat4ToGlm(&node -> mTransformation);
     glm::mat4 globalTransformation = parentTransform * transform;
-    // process each mesh located at the current node
+
     for(unsigned int i = 0; i < node->mNumMeshes; i++){
         aiMesh* assimpMesh = scene->mMeshes[node->mMeshes[i]];
 
-                // This will just get the vertex data, indices, tex coords, etc.
 		Mesh mesh = processMesh(assimpMesh, scene);
 		mesh.setModelMatrix(globalTransformation);
 		meshes.push_back(mesh);
     }
     // after we've processed all of the meshes (if any) we then recursively process each of the children nodes
-    for(unsigned int i = 0; i < node->mNumChildren; i++){
+    for(unsigned int i = 0; i < node->mNumChildren; i++)
         processNode(node->mChildren[i], scene, globalTransformation);
-    }
-
 }
 
-glm::mat4 Model::AiMatrix4x4ToGlm(const aiMatrix4x4* from)
-{
-	glm::mat4 to;
-	to[0][0] = (GLfloat)from->a1; to[0][1] = (GLfloat)from->b1;  to[0][2] = (GLfloat)from->c1; to[0][3] = (GLfloat)from->d1;
-	to[1][0] = (GLfloat)from->a2; to[1][1] = (GLfloat)from->b2;  to[1][2] = (GLfloat)from->c2; to[1][3] = (GLfloat)from->d2;
-	to[2][0] = (GLfloat)from->a3; to[2][1] = (GLfloat)from->b3;  to[2][2] = (GLfloat)from->c3; to[2][3] = (GLfloat)from->d3;
-	to[3][0] = (GLfloat)from->a4; to[3][1] = (GLfloat)from->b4;  to[3][2] = (GLfloat)from->c4; to[3][3] = (GLfloat)from->d4;
+glm::mat4 Model::AiMat4ToGlm(const aiMatrix4x4* aiMat){
+	glm::mat4 mat;
+	mat[0][0] = (GLfloat)aiMat->a1; mat[0][1] = (GLfloat)aiMat->b1;  mat[0][2] = (GLfloat)aiMat->c1; mat[0][3] = (GLfloat)aiMat->d1;
+	mat[1][0] = (GLfloat)aiMat->a2; mat[1][1] = (GLfloat)aiMat->b2;  mat[1][2] = (GLfloat)aiMat->c2; mat[1][3] = (GLfloat)aiMat->d2;
+	mat[2][0] = (GLfloat)aiMat->a3; mat[2][1] = (GLfloat)aiMat->b3;  mat[2][2] = (GLfloat)aiMat->c3; mat[2][3] = (GLfloat)aiMat->d3;
+	mat[3][0] = (GLfloat)aiMat->a4; mat[3][1] = (GLfloat)aiMat->b4;  mat[3][2] = (GLfloat)aiMat->c4; mat[3][3] = (GLfloat)aiMat->d4;
 
-	return to;
+	return mat;
 }
 
 Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)

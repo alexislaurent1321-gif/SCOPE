@@ -13,7 +13,7 @@ public:
     UICameraController() = default;
     UICameraController(CameraController* cameraController_) : cameraController(cameraController_) {}
 
-    void DrawUI()
+    void draw()
     {
         if(!cameraController || !show)
             return;

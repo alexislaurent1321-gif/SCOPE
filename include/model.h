@@ -35,9 +35,9 @@ public:
     void draw(Shader &shader);
 
     // Transformations
-    glm::vec3 position{0.f, 0.f, 0.f};
+    glm::vec3 position{0.f, 0.f, 1.f};
     glm::vec3 size{1.f};
-    glm::vec3 orientation{0.f, 0.f, 0.f};
+    glm::vec3 orientation{1.f, 0.f, 0.f};
 
     glm::mat4 getModelMatrix() const{
         glm::mat4 model(1.f);
@@ -51,12 +51,12 @@ public:
     
 private:
     void load(std::string const &path);
+    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
 
     void processNode(aiNode *node, const aiScene *scene, glm::mat4 parentTransform = glm::mat4(1.f));
     Mesh processMesh(aiMesh *mesh, const aiScene *scene);
-    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
-
-    glm::mat4 Model::AiMatrix4x4ToGlm(const aiMatrix4x4* from);
+    
+    glm::mat4 Model::AiMat4ToGlm(const aiMatrix4x4* from);
 
     
 };

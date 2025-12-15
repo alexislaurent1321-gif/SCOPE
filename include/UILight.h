@@ -35,7 +35,7 @@ public:
     }
 
     // Interface ImGui
-    void drawUI() {
+    void draw() {
         ImGui::Begin("Lights");
 
         if (ImGui::Button("Ajouter PointLight"))
