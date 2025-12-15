@@ -38,9 +38,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     assimp::assimp
 )
 
-
-if (WIN32)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE GLFW_INCLUDE_NONE)
-endif()
-
-message(STATUS "Configuration avec dossier include/ OK ✓")
+message(STATUS "Configuration réussie")

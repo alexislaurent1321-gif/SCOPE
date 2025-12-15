@@ -1,4 +1,4 @@
 /build
-resources/models
+resources/models/*
 resources/textures
 *.ini
