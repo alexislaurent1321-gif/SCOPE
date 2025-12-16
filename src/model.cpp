@@ -174,3 +174,34 @@ std::vector<Texture> Model::loadMaterialTextures(aiMaterial *material, aiTexture
     return textures;
 }
 
+// Transform
+
+void Model::setPosition(glm::vec3 position_){
+    position = position_;
+    updateModelMatrix();
+}
+
+void Model::setOrientation(glm::vec3 orientation_){
+    orientation = orientation_;
+    updateModelMatrix();
+}
+
+void Model::setScale(glm::vec3 scale_){
+    scale = scale_;
+    updateModelMatrix();
+}
+
+glm::mat4 Model::getModelMatrix() const{
+    return modelMatrix;
+}
+
+void Model::updateModelMatrix(){
+    modelMatrix = glm::scale(glm::mat4(1.f), 0.1f * scale);
+    modelMatrix = glm::rotate(modelMatrix, orientation.x, glm::vec3(1.f, 0.f, 0.f));
+    modelMatrix = glm::rotate(modelMatrix, orientation.y, glm::vec3(0.f, 1.f, 0.f));
+    modelMatrix = glm::rotate(modelMatrix, orientation.z, glm::vec3(0.f, 0.f, 1.f));
+    modelMatrix = glm::translate(modelMatrix, position);
+}
+
+
+    

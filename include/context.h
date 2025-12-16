@@ -33,16 +33,10 @@ public:
     void init();
 
     static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
-    // 🔹 Callbacks statiques (compatibles C)
     static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-
     static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-
-    // 🔹 Entrées clavier
     static void processInput(GLFWwindow* window, float deltaTime);
 
-    // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-    // ---------------------------------------------------------------------------------------------
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 };
 #endif

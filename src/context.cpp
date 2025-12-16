@@ -4,8 +4,7 @@ Context::Context() : window(nullptr), cameraController() {}
 
 void Context::init() {
     window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
-    if (window == NULL)
-    {
+    if (window == NULL){
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
     }
@@ -37,10 +36,8 @@ void Context::mouse_button_callback(GLFWwindow* window, int button, int action, 
         context->middleButtonDown = (action == GLFW_PRESS);
 }
 
-// 🔹 Callbacks statiques (compatibles C)
 void Context::mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
 
-    // Récupère l'instance de Context associée à cette fenêtre
     Context* context = static_cast<Context*>(glfwGetWindowUserPointer(window));
     if (!context) return;
 
@@ -78,7 +75,6 @@ void Context::scroll_callback(GLFWwindow* window, double xoffset, double yoffset
                                                     SCR_HEIGHT);
 }
 
-// 🔹 Entrées clavier
 void Context::processInput(GLFWwindow* window, float deltaTime) {
     Context* context = static_cast<Context*>(glfwGetWindowUserPointer(window));
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
