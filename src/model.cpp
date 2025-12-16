@@ -28,6 +28,7 @@ void Model::load(std::string const &path){
     directory = path.substr(0, path.find_last_of('/'));
 
     // process ASSIMP's root node recursively
+    updateModelMatrix();
     processNode(scene->mRootNode, scene, this->getModelMatrix());
 }
 
