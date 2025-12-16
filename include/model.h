@@ -37,11 +37,11 @@ public:
     // Transformations
     glm::vec3 position{0.f, 0.f, 1.f};
     glm::vec3 size{1.f};
-    glm::vec3 orientation{1.f, 0.f, 0.f};
+    glm::vec3 orientation{0.f, 0.f, 0.f};
 
     glm::mat4 getModelMatrix() const{
         glm::mat4 model(1.f);
-        model = glm::scale(model, 0.01f * size);
+        model = glm::scale(model, 0.1f * size);
         model = glm::rotate(model, orientation.x, glm::vec3(1.f, 0.f, 0.f));
         model = glm::rotate(model, orientation.y, glm::vec3(0.f, 1.f, 0.f));
         model = glm::rotate(model, orientation.z, glm::vec3(0.f, 0.f, 1.f));
