@@ -112,8 +112,8 @@ int main(){
                 const int nbDirLights = dirIndex;
                 shader1.setUniform("nbDirLights", nbDirLights);
             }
-            else if (entry.type == UILight::LightType::Spot)
-                static_cast<SpotLight*>(entry.light.get())->apply(shader1, spotIndex++);
+            // else if (entry.type == UILight::LightType::Spot)
+            //     static_cast<SpotLight*>(entry.light.get())->apply(shader1, spotIndex++);
         }
 
         // Transformations d'espace pour le vertex shader

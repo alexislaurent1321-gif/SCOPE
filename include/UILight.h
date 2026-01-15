@@ -6,9 +6,12 @@
 #include <vector>
 #include <memory>
 
+/**
+ * \brief User interface to manage lights in the scene
+ */
 class UILight {
 public:
-    enum class LightType{Point, Directional, Spot};
+    enum class LightType{Point, Directional};   
 
     struct LightEntry {
         LightType type;
@@ -19,7 +22,7 @@ public:
 
     UILight() = default;
 
-    // Ajouter une lumière
+    // Put a light
     void addLight(LightType type) {
         LightEntry entry;
         entry.type = type;
@@ -28,13 +31,11 @@ public:
             entry.light = std::make_unique<PointLight>();
         else if (type == LightType::Directional)
             entry.light = std::make_unique<DirLight>();
-        else if (type == LightType::Spot)
-            entry.light = std::make_unique<SpotLight>();
 
         lights.push_back(std::move(entry));
     }
 
-    // Interface ImGui
+    // ImGui Interface 
     void draw() {
         ImGui::Begin("Lights");
 
@@ -43,9 +44,6 @@ public:
         ImGui::SameLine();
         if (ImGui::Button("Ajouter DirectionalLight"))
             addLight(LightType::Directional);
-        ImGui::SameLine();
-        if (ImGui::Button("Ajouter SpotLight"))
-            addLight(LightType::Spot);
 
         ImGui::Separator();
 
@@ -55,8 +53,8 @@ public:
 
             if (ImGui::CollapsingHeader(label.c_str())) {
 
-                // Bouton supprimer
-                if (ImGui::Button(("Supprimer##" + std::to_string(i)).c_str())) {
+                // Delete button
+                if (ImGui::Button(("Delete##" + std::to_string(i)).c_str())) {
                     lights.erase(lights.begin() + i);
                     --i;
                     continue;
@@ -68,16 +66,13 @@ public:
                 else if (entry.type == LightType::Directional) {
                     drawDirectionalLightUI(*static_cast<DirLight*>(entry.light.get()));
                 }
-                else if (entry.type == LightType::Spot) {
-                    drawSpotLightUI(*static_cast<SpotLight*>(entry.light.get()));
-                }
             }
         }
 
         ImGui::End();
     }
 
-    // ----- UI de chaque type de lumière -----
+    // UI for each types of light
 
     void drawPointLightUI(PointLight &l) {
         ImGui::Text("PointLight");
@@ -97,23 +92,6 @@ public:
         ImGui::ColorEdit3("Ambient", &l.ambient.x);
         ImGui::ColorEdit3("Diffuse", &l.diffuse.x);
         ImGui::ColorEdit3("Specular", &l.specular.x);
-    }
-
-    void drawSpotLightUI(SpotLight &l) {
-        ImGui::Text("SpotLight");
-        ImGui::DragFloat3("Position", &l.position.x, 0.1f);
-        ImGui::DragFloat3("Direction", &l.direction.x, 0.1f);
-
-        ImGui::ColorEdit3("Ambient", &l.ambient.x);
-        ImGui::ColorEdit3("Diffuse", &l.diffuse.x);
-        ImGui::ColorEdit3("Specular", &l.specular.x);
-
-        ImGui::DragFloat("Constant", &l.constant, 0.01f);
-        ImGui::DragFloat("Linear", &l.linear, 0.01f);
-        ImGui::DragFloat("Quadratic", &l.quadratic, 0.01f);
-
-        ImGui::DragFloat("CutOff", &l.cutOff, 0.01f);
-        ImGui::DragFloat("OuterCutOff", &l.outerCutOff, 0.01f);
     }
 };
 

@@ -4,6 +4,9 @@
 #include "model.h"
 #include <imgui.h>
 
+/**
+ * \brief User interface to manage a chosen model in the scene
+ */
 class UIModel{
 
 private : 

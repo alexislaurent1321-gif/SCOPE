@@ -56,7 +56,7 @@ public:
             ImGui::Text("Camera Debug Info:");
             ImGui::Spacing();
 
-            // Display useful information
+            // Display useful informations
             ImGui::Text("Position:  %.3f  %.3f  %.3f",
                         cameraController->camera.Position.x,
                         cameraController->camera.Position.y,
@@ -67,15 +67,15 @@ public:
                         cameraController->camera.Target.y,
                         cameraController->camera.Target.z);
 
-            ImGui::Text("Up:        %.3f  %.3f  %.3f",
+            ImGui::Text("up:        %.3f  %.3f  %.3f",
                         cameraController->camera.up.x,
                         cameraController->camera.up.y,
                         cameraController->camera.up.z);
 
             ImGui::Text("FOV:       %.2f", cameraController->camera.fov);
-            ImGui::Text("Aspect:    %.2f", cameraController->camera.aspectRatio);
+            ImGui::Text("aspect ratio :    %.2f", cameraController->camera.aspectRatio);
             
-            ImGui::Text("Near/Far:  %.2f / %.2f",
+            ImGui::Text("near/far:  %.2f / %.2f",
                         cameraController->camera.nearPlane,
                         cameraController->camera.farPlane);
 
@@ -83,7 +83,7 @@ public:
             ImGui::Separator();
 
             // Reset button
-            if(ImGui::Button("Reset Camera"))
+            if(ImGui::Button("Reset camera"))
             {
                 cameraController->camera = Camera();
             }
