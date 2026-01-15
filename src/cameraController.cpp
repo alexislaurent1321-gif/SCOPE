@@ -4,7 +4,7 @@
 
 CameraController::CameraController(Camera& camera_) : camera(camera_) {}
 
-// processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
+
 void CameraController::ProcessMouseZoom(float dz){
     camera.zoom(dz);
 }
@@ -42,8 +42,7 @@ void CameraController::ProcessMouseScrollAtCursor(float dz, float mouseX, float 
         camera.zoom(dz, mouseX, mouseY, depth, viewport);
     }
     else{
-        // Si on clique dans le vide : zoom au curseur classique
-        // Normalisation du curseur entre -1 et +1
+        // cursor position into homogenneous space
         float x_screen = ((mouseX / screenWidth) * 2 - 1) * camera.aspectRatio;
         float y_screen = ((mouseY / screenHeight) * 2 - 1);
         camera.zoom(dz, x_screen, y_screen);

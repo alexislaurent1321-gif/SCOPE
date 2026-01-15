@@ -4,15 +4,30 @@
 #include "cameraController.h"
 #include <imgui.h>
 
+/**
+ * \brief class allowing control of the camera via ImGui
+ */
 class UICameraController
 {
 public:
-    CameraController* cameraController = nullptr;
-    bool show = true;
+    CameraController* cameraController = nullptr;   // this class control the values of the controller
+    bool show = true;                               // we see the ImGui window if true
 
+    /**
+     * \brief Default constructor
+     */
     UICameraController() = default;
+
+    /**
+     * \brief Constructor with an existing controller
+     * 
+     * \param cameraController_ existing controller 
+     */
     UICameraController(CameraController* cameraController_) : cameraController(cameraController_) {}
 
+    /**
+     * \brief Draw the content of the UI
+     */
     void draw()
     {
         if(!cameraController || !show)
@@ -23,12 +38,12 @@ public:
             ImGui::Text("Camera Settings");
             ImGui::Separator();
 
-            // ----- Movement / Rotation -----
+            // Rotation, pan, zoom sensitivities
             ImGui::SliderFloat("Rotate Sensitivity", &cameraController->rotateSensitivity, 0.0001f, 0.02f);
             ImGui::SliderFloat("Pan Sensitivity", &cameraController->panSensitivity, 0.0001f, 0.01f);
             ImGui::SliderFloat("Zoom Sensitivity", &cameraController->zoomSensitivity, 0.01f, 1.0f);
 
-            // ---- Options ----
+            // Zoom to cursor if true
             ImGui::Checkbox("Zoom to Cursor", &cameraController->zoomToCursor);
             // ImGui::Checkbox("Orthographic projection", &cameraController->camera.projectionortho);
 
@@ -41,7 +56,7 @@ public:
             ImGui::Text("Camera Debug Info:");
             ImGui::Spacing();
 
-            // display useful information
+            // Display useful information
             ImGui::Text("Position:  %.3f  %.3f  %.3f",
                         cameraController->camera.Position.x,
                         cameraController->camera.Position.y,

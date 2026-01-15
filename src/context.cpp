@@ -3,14 +3,14 @@
 Context::Context() : window(nullptr), cameraController() {} 
 
 void Context::init() {
-    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    window = glfwCreateWindow((int) (SCR_HEIGHT * aspectRatio), SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL){
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
     }
     glfwMakeContextCurrent(window);
 
-    // On associe l'objet Context à la fenêtre GLFW
+    // Associating the Context object with the GLFW window
     glfwSetWindowUserPointer(window, this);
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -19,7 +19,7 @@ void Context::init() {
     glfwSetMouseButtonCallback(window, mouse_button_callback);
 
 
-    // tell GLFW to capture our mouse
+    // Tell GLFW to capture the mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 }
 
@@ -36,13 +36,13 @@ void Context::mouse_button_callback(GLFWwindow* window, int button, int action, 
         context->middleButtonDown = (action == GLFW_PRESS);
 }
 
-void Context::mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
+void Context::mouse_callback(GLFWwindow* window, double mouseX, double mouseY) {
 
     Context* context = static_cast<Context*>(glfwGetWindowUserPointer(window));
     if (!context) return;
 
-    float xpos = static_cast<float>(xposIn);
-    float ypos = static_cast<float>(yposIn);
+    float xpos = static_cast<float>(mouseX);
+    float ypos = static_cast<float>(mouseY);
 
     if (context->firstMouse) {
         context->lastX = xpos;
@@ -64,14 +64,12 @@ void Context::mouse_callback(GLFWwindow* window, double xposIn, double yposIn) {
 
 void Context::scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
     Context* context = static_cast<Context*>(glfwGetWindowUserPointer(window));
-    // if (context)
-    //     context->cameraController.ProcessMouseZoom(static_cast<float>(yoffset));
 
     if (context)
     context->cameraController.ProcessMouseScrollAtCursor(static_cast<float>(yoffset),
                                                     context->lastX,
                                                     context->lastY,
-                                                    SCR_WIDTH,
+                                                    (int) (SCR_HEIGHT * context->cameraController.camera.aspectRatio),
                                                     SCR_HEIGHT);
 }
 

@@ -7,34 +7,62 @@
 
 #include <iostream>
 
-// settings
-const unsigned int SCR_HEIGHT = 600;
-const unsigned int SCR_WIDTH = SCR_HEIGHT * 16. / 9.;
+const unsigned int SCR_HEIGHT = 600;    // Default screen size
 
+/**
+ * \brief Class to initialize a window and manage the inputs
+ */
 class Context {
 public:
-    GLFWwindow* window;
-    CameraController cameraController;
+    GLFWwindow* window;                                         // pointer to a GLFW window (GLFW is programmed in C)
+    CameraController cameraController;                          // camera controller called by the inputs managed by the context
+    float aspectRatio = cameraController.camera.aspectRatio;    // aspect ratio to define the screen width by multiplying the screen height
 
-    float lastX = SCR_WIDTH / 2.0f;
-    float lastY = SCR_HEIGHT / 2.0f;
+    float lastX = SCR_HEIGHT * aspectRatio / 2.0f;      // x cursor position of the last frame in centered screen space
+    float lastY = SCR_HEIGHT / 2.0f;                    // y cursor position of the last frame in centered screen space
 
-    // Position actuelle du curseur
-    float cursorX = SCR_WIDTH / 2.0f;
-    float cursorY = SCR_HEIGHT / 2.0f;
+    float cursorX = SCR_HEIGHT * aspectRatio / 2.0f;    // x cursor position of the current frame in centered screen space
+    float cursorY = SCR_HEIGHT / 2.0f;                  // y cursor position of the current frame in centered screen space
 
-    bool firstMouse = true;
-    bool leftButtonDown = false;
-    bool rightButtonDown = false;
-    bool middleButtonDown = false;
+    bool firstMouse = true;             // true if the mouse is moving
+    bool leftButtonDown = false;        // true if the left button is  down
+    bool rightButtonDown = false;       // true if the right button is down
+    bool middleButtonDown = false;      // true if the middle button is down
 
+    /**
+     * \brief Default constructor of the context
+     */
     Context();
 
+    /**
+     * \brief Init the context by using the input manager
+     */
     void init();
 
+
+    /**
+     * \brief Actions by press a mouse button
+     * 
+     * \param window pointer to the window
+     * \param button indicates which button is pressed
+     * \param action indicates which action is performed depending on the button used
+     */
     static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
-    static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
+
+    /**
+     * \brief Compute the displacement of the mouse in screen space between the last frame and the current frame
+     * 
+     * \param window pointer to the window
+     * \param mouseX x position in the screen space
+     * \param mouseY y position in the screen space 
+     */
+    static void mouse_callback(GLFWwindow* window, double mouseX, double mouseY);
+
+    /**
+     * \brief 
+     */
     static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    
     static void processInput(GLFWwindow* window, float deltaTime);
 
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);

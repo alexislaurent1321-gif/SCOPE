@@ -15,15 +15,9 @@ Camera::Camera()
     updateCameraOrientation();
 }
 
-float Camera::getRadius() const{
-    return glm::distance(Position, RotationCenter);
-}
-
 void Camera::pan(float dx, float dy){
-    xDisplacement += dx;
-    yDisplacement += dy;
 
-    glm::mat4 translate = glm::translate(glm::mat4(1.0f), (-dx*right - dy*up) * getRadius());
+    glm::mat4 translate = glm::translate(glm::mat4(1.0f), (-dx*right - dy*up) * glm::distance(Position, RotationCenter));
     Position = translate * glm::vec4(Position, 1.0f);
     Target = translate * glm::vec4(Target, 1.0f);
 }
@@ -61,18 +55,18 @@ void Camera::zoom(float dz, float xpos, float ypos){
 void Camera::zoom(float dz, float mouseX, float mouseY, float depth, const glm::vec4& viewport){
     glm::vec3 worldPosition = glm::unProject({mouseX, viewport[3]-mouseY, depth}, getViewMatrix(), getProjectionMatrix(), viewport);
     
-    // Vecteur direction du zoom
+    // Direction of the zoom
     glm::vec3 direction = worldPosition - Position;
     auto distance = glm::length(direction);
 
     direction = glm::normalize(direction);
 
-    // Zoom vers ce point (déplacement caméra + target)
+    // Zoom to this point (camera movement + target)
     Position += direction * dz * distance;
     Target += direction * dz * distance;
 
     // RotationCenter = worldPosition;
-    Target = Position - getRadius() * front;
+    Target = Position - glm::distance(Position, RotationCenter) * front;
 }
 
 glm::mat4 Camera::getViewMatrix() const{
@@ -98,7 +92,6 @@ glm::mat4 Camera::getProjectionMatrix() const{
     }    
 }
 
-// calculates the front vector from the Camera's (updated) Euler Angles
 void Camera::updateCameraOrientation(){
     up = cameraDefault::up;
     front = glm::normalize(Position - Target);

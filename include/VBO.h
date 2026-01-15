@@ -4,18 +4,33 @@
 #include <glad/glad.h>
 #include "vertex.h"
 
-
+/**
+ * \brief Little class to create and manage a VBO
+ */
 class VBO
 {
 public:
 
-	GLuint ID;
+	GLuint ID;  // identifier of a VBO
 
+	/**
+     * \brief VBO contructed by giving the vertex datas of a mesh
+     */
 	VBO(std::vector<Vertex> vertices);
 
+	/**
+     * \brief Bind the VBO by initializing the identifier, create the buffer and assigning the storage space for the vertex datas
+     */
 	void bind();
+
+	/**
+     * \brief Unbind the VBO by assigning 0 to the identifier
+     */
 	void unbind();
 
+	/**
+	 * \brief Delete the VBO
+	 */
 	void deleteBuffer();
 };
 
