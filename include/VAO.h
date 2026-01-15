@@ -5,7 +5,7 @@
 #include "VBO.h"
 
 /**
- * \brief Little class to create and manage a VAO
+ * @brief Little class to create and manage a VAO
  */
 class VAO
 {
@@ -14,27 +14,27 @@ public:
 	GLuint ID;  // identifier of a VAO
 
     /**
-     * \brief Default constructor
+     * @brief Default constructor
      */
 	VAO();
 
     /**
-     * \brief Fill the VAO from the vertex datas
+     * @brief Fill the VAO from the vertex datas
      */
 	void linkVBO(VBO& VBO, GLuint layout, GLuint numComponents, GLenum type, GLsizeiptr stride, void* offset);
     
     /**
-     * \brief Bind the VAO
+     * @brief Bind the VAO
      */
 	void bind();
 
     /**
-     * \brief Unbind the VAO by assigning 0 to the identifier
+     * @brief Unbind the VAO by assigning 0 to the identifier
      */
 	void unbind();
 
     /**
-     * \brief Delete the VAO
+     * @brief Delete the VAO
      */
 	void deleteArray();
 };

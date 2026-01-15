@@ -21,7 +21,7 @@ namespace cameraDefault {
 }
 
 /**
- * \brief Generic camera class allowing movement within the scene and zooming based on the depth of the object
+ * @brief Generic camera class allowing movement within the scene and zooming based on the depth of the object
  */
 class Camera
 {
@@ -49,59 +49,59 @@ public:
     Camera();
 
     /**
-     * \brief Lateral displacement of the camera
+     * @brief Lateral displacement of the camera
      * 
-     * \param dx displacement on the x axis
-     * \param dy displacement on the y axis
+     * @param dx displacement on the x axis
+     * @param dy displacement on the y axis
      */
     void pan(float dx, float dy); 
     
     /**
-     * \brief Rotation around the center of rotation
+     * @brief Rotation around the center of rotation
      * 
-     * \param dx displacement on the x axis for the yaw
-     * \param dy displacement on the y axis for the pitch
+     * @param dx displacement on the x axis for the yaw
+     * @param dy displacement on the y axis for the pitch
      */
     void rotate(float dx, float dy);    
 
     /**
-     * \brief Zoom at center
+     * @brief Zoom at center
      * 
-     * \param dz displacement on the z axis by scrolling
+     * @param dz displacement on the z axis by scrolling
      */
     void zoom(float dz);   
     
     /**
-     * \brief Zoom to cursor if no object is pointed at
+     * @brief Zoom to cursor if no object is pointed at
      * 
-     * \param dz displacement on the z axis by scrolling
-     * \param xpos x position of the cursor in the homogeneous space
-     * \param ypos y position of the cursor in the homogeneous space
+     * @param dz displacement on the z axis by scrolling
+     * @param xpos x position of the cursor in the homogeneous space
+     * @param ypos y position of the cursor in the homogeneous space
      */
     void zoom(float dz, float xpos, float ypos);     
     
     /**
-     * \brief Zoom to cursor based on the depth of the object pointed to by the cursor
+     * @brief Zoom to cursor based on the depth of the object pointed to by the cursor
      * 
-     * \param dz displacement on the z axis by scrolling
-     * \param mouseX x position in the screen space
-     * \param mouseY y position in the screen space 
-     * \param depth distance between the camera and the fragment pointed by the cursor in the screen space
-     * \param viewport viewport params to convert the screen coordinates into homogeneous coordinates
+     * @param dz displacement on the z axis by scrolling
+     * @param mouseX x position in the screen space
+     * @param mouseY y position in the screen space 
+     * @param depth distance between the camera and the fragment pointed by the cursor in the screen space
+     * @param viewport viewport params to convert the screen coordinates into homogeneous coordinates
      */
     void zoom(float dz, float mouseX, float mouseY, float depth, const glm::vec4& viewport);   
 
     /**
-     * \brief Return the view matrix
+     * @brief Return the view matrix
      * 
-     * \return view matrix
+     * @return view matrix
      */
     glm::mat4 getViewMatrix() const;
 
     /**
-     * \brief Return the projection matrix
+     * @brief Return the projection matrix
      * 
-     * \return projection matrix
+     * @return projection matrix
      */
     glm::mat4 getProjectionMatrix() const;
 
@@ -110,7 +110,7 @@ public:
 private : 
 
     /**
-     * \brief Update the view matrix after a transformation
+     * @brief Update the view matrix after a transformation
      */
     void updateCameraOrientation(); // recalcul de la base de vue
 };

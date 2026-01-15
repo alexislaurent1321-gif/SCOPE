@@ -5,7 +5,7 @@
 #include <imgui.h>
 
 /**
- * \brief class allowing control of the camera via ImGui
+ * @brief class allowing control of the camera via ImGui
  */
 class UICameraController
 {
@@ -14,19 +14,19 @@ public:
     bool show = true;                               // we see the ImGui window if true
 
     /**
-     * \brief Default constructor
+     * @brief Default constructor
      */
     UICameraController() = default;
 
     /**
-     * \brief Constructor with an existing controller
+     * @brief Constructor with an existing controller
      * 
-     * \param cameraController_ existing controller 
+     * @param cameraController_ existing controller 
      */
     UICameraController(CameraController* cameraController_) : cameraController(cameraController_) {}
 
     /**
-     * \brief Draw the content of the UI
+     * @brief Draw the content of the UI
      */
     void draw()
     {

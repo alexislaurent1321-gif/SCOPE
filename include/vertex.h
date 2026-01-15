@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 
 /**
- * \brief Vertex datas which contains position, UV, normal, tangent and bitangent datas
+ * @brief Vertex datas which contains position, UV, normal, tangent and bitangent datas
  */
 struct Vertex{
     glm::vec3 position;

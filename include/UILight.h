@@ -7,7 +7,7 @@
 #include <memory>
 
 /**
- * \brief User interface to manage lights in the scene
+ * @brief User interface to manage lights in the scene
  */
 class UILight {
 public:

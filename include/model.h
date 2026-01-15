@@ -23,15 +23,54 @@
 #include <map>
 #include <vector>
 
+/**
+ * @brief Class that load a gltf model with node processing and specular, diffuse texture and model transformation
+ * 
+ */
 class Model {
 
 private:
+    /**
+     * @brief Load the model
+     * 
+     * @param path 
+     */
     void load(std::string const &path);
-    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
 
+    /**
+     * @brief Process
+     * 
+     * @param node 
+     * @param scene 
+     * @param parentTransform 
+     */
     void processNode(aiNode *node, const aiScene *scene, glm::mat4 parentTransform = glm::mat4(1.f));
-    Mesh processMesh(aiMesh *mesh, const aiScene *scene);
     
+    /**
+     * @brief 
+     * 
+     * @param mesh 
+     * @param scene 
+     * @return Mesh 
+     */
+    Mesh processMesh(aiMesh *mesh, const aiScene *scene);
+
+    /**
+     * @brief 
+     * 
+     * @param mat 
+     * @param type 
+     * @param typeName 
+     * @return std::vector<Texture> 
+     */
+    std::vector<Texture> loadMaterialTextures(aiMaterial *material, aiTextureType type, std::string typeName);
+    
+    /**
+     * @brief Convert an assimp matrix to a glm matrix 
+     * 
+     * @param aiMat 
+     * @return glm::mat4 
+     */
     glm::mat4 Model::AiMat4ToGlm(const aiMatrix4x4* aiMat);
 
     // Transform
@@ -39,6 +78,10 @@ private:
     glm::vec3 scale{1.f};
     glm::vec3 orientation{0.f, 0.f, 0.f};
     glm::mat4 modelMatrix{1.f};
+
+    /**
+     * @brief Update the model matrix with new transform variables
+     */
     void updateModelMatrix();
 
 
@@ -56,6 +99,12 @@ public:
     void setPosition(glm::vec3 position_);
     void setOrientation(glm::vec3 orientation_);
     void setScale(glm::vec3 scale_);
+    
+    /**
+     * @brief Get the Model Matrix object
+     * 
+     * @return glm::mat4 
+     */
     glm::mat4 getModelMatrix() const;
 };
 

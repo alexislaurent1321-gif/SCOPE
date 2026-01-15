@@ -8,7 +8,7 @@
 #include "shader.h"
 
 /**
- * \brief Class that manages the lights
+ * @brief Class that manages the lights
  */
 class Light {
 public:
@@ -17,25 +17,25 @@ public:
     glm::vec3 specular{1.0f};
 
     /**
-     * \brief Default constructor
+     * @brief Default constructor
      */
     Light() = default;
 
     /**
-     * \brief Constructor with general light parameters
+     * @brief Constructor with general light parameters
      * 
-     * \param ambient_ ambient light
-     * \param diffuse_ diffuse light
-     * \param specular_ specular light
+     * @param ambient_ ambient light
+     * @param diffuse_ diffuse light
+     * @param specular_ specular light
      */
     Light(glm::vec3 ambient_, glm::vec3 diffuse_, glm::vec3 specular_);
 
     /**
-     * \brief Abstract method to send the light to a shader
+     * @brief Abstract method to send the light to a shader
      * 
-     * \param shader shader used
-     * \param index index of the light
-     * \param name name of the light
+     * @param shader shader used
+     * @param index index of the light
+     * @param name name of the light
      */
     virtual void apply(Shader& shader, int index, const std::string& name) const = 0;
 };
@@ -43,7 +43,7 @@ public:
 
 
 /**
- * \brief Derived class of Light. Uniform illumination in all directions with attenuation
+ * @brief Derived class of Light. Uniform illumination in all directions with attenuation
  */
 class PointLight : public Light{
     public : 
@@ -54,46 +54,46 @@ class PointLight : public Light{
     float quadratic = 0.032;    // quadratic attenuation coefficient
 
     /**
-     * \brief Default constructor of PointLight
+     * @brief Default constructor of PointLight
      */
     PointLight() = default;  
     
     /**
-     * \brief Contructor of PointLight with given position
+     * @brief Contructor of PointLight with given position
      * 
-     * \param position_
+     * @param position_
      */
     PointLight(glm::vec3 position_);
 
     /**
-     * \brief Contructor of PointLight with given position and abstract light attributes
+     * @brief Contructor of PointLight with given position and abstract light attributes
      * 
-     * \param position_ 
-     * \param ambient_
-     * \param diffuse_
-     * \param specular_
+     * @param position_ 
+     * @param ambient_
+     * @param diffuse_
+     * @param specular_
      */
     PointLight(glm::vec3 position_, glm::vec3 ambient_, glm::vec3 diffuse_, glm::vec3 specular_);
 
     /**
-     * \brief Contructor of PointLight with given position, abstract light attributes and attenuation coefficient
+     * @brief Contructor of PointLight with given position, abstract light attributes and attenuation coefficient
      * 
-     * \param position_ 
-     * \param ambient_
-     * \param diffuse_
-     * \param specular_
-     * \param constant
-     * \param linear_
-     * \param quadratic_
+     * @param position_ 
+     * @param ambient_
+     * @param diffuse_
+     * @param specular_
+     * @param constant
+     * @param linear_
+     * @param quadratic_
      */
     PointLight(glm::vec3 position_, glm::vec3 ambient_, glm::vec3 diffuse_, glm::vec3 specular_, float constant_, float linear_, float quadratic_);
 
     /**
-     * \brief send the spot light to a shader
+     * @brief send the spot light to a shader
      * 
-     * \param shader shader used
-     * \param index index of the light
-     * \param name name of the light
+     * @param shader shader used
+     * @param index index of the light
+     * @param name name of the light
      */
     void apply(Shader& shader, int index, const std::string& name = "pointLights") const override;
 };
@@ -101,40 +101,40 @@ class PointLight : public Light{
 
 
 /**
- * \brief Derived class of Light. Light in a single direction without attenuation
+ * @brief Derived class of Light. Light in a single direction without attenuation
  */
 class DirLight : public Light{
     public : 
     glm::vec3 direction{0.f, 0.f, 1.f}; // direction of the light
 
     /**
-     * \brief Default constructor of DirLight
+     * @brief Default constructor of DirLight
      */
     DirLight() = default;
 
     /**
-     * \brief Constructor of Dirlight by a given direction
+     * @brief Constructor of Dirlight by a given direction
      * 
-     * \param direction_
+     * @param direction_
      */
     DirLight(glm::vec3 direction_);
 
     /**
-     * \brief Construction of Dirlight by given direction and abstract light attributes
+     * @brief Construction of Dirlight by given direction and abstract light attributes
      * 
-     * \param direction_
-     * \param ambient_
-     * \param diffuse_
-     * \param specular_
+     * @param direction_
+     * @param ambient_
+     * @param diffuse_
+     * @param specular_
      */
     DirLight(glm::vec3 direction_, glm::vec3 ambient_, glm::vec3 diffuse_, glm::vec3 specular_);
 
     /**
-     * \brief Send the directional light to a shader
+     * @brief Send the directional light to a shader
      * 
-     * \param shader shader used
-     * \param index index of the light
-     * \param name name of the light
+     * @param shader shader used
+     * @param index index of the light
+     * @param name name of the light
      */
     void apply(Shader& shader, int index, const std::string& name = "dirLights") const override;
 };
