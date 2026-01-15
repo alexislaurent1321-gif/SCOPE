@@ -38,11 +38,11 @@ int main(){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    // Création du contexte
+    // Context creation
     Context context;
     context.init();
 
-    // Chargement d'openGL
+    // Loading of openGL
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -52,44 +52,45 @@ int main(){
     Camera& camera = context.cameraController.camera;
 
 
-    // Test de profondeur
+    // Depth test
     glEnable(GL_DEPTH_TEST); 
 
-    // Initialisation d'IMGUI
+    // Initialization of IMGUI
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGui::StyleColorsDark();
     ImGui_ImplGlfw_InitForOpenGL(context.window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    // // Chargement des shaders
+    // Shaders loading
     // Shader shader1("resources/shaders/model_loading.vert", "resources/shaders/model_loading.frag");
     Shader shader1("resources/shaders/lights.vert", "resources/shaders/lights.frag");
-    Shader cubeLightShader("resources/shaders/light_cube.vert", "resources/shaders/light_cube.frag");
+    // Shader cubeLightShader("resources/shaders/light_cube.vert", "resources/shaders/light_cube.frag");
 
-    // Chargement des modèles
+    // Models loading
     Model model1("resources/models/backpack2/scene.gltf");
     // Model model1("resources/models/backpack/backpack.obj");
 
 
     // -----------------------------
-    //  Boucle de rendu
+    //  Render loop
     // -----------------------------
+    
     UICameraController uiCam(&context.cameraController);
     UIModel uiModel(&model1);
     UILight uiLight;
 
     while (!glfwWindowShouldClose(context.window))
     {
-        // Actualisation des frames
+        // Updating frames
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // Appel du gestionnaire d'inputs
+        // Call to the input manager
         context.processInput(context.window, deltaTime);
 
-        // Rendu
+        // Render
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -112,14 +113,11 @@ int main(){
                 const int nbDirLights = dirIndex;
                 shader1.setUniform("nbDirLights", nbDirLights);
             }
-            // else if (entry.type == UILight::LightType::Spot)
-            //     static_cast<SpotLight*>(entry.light.get())->apply(shader1, spotIndex++);
         }
 
-        // Transformations d'espace pour le vertex shader
+        // Space transformations for the vertex shader
         glm::mat4 projection = camera.getProjectionMatrix();
         glm::mat4 view = camera.getViewMatrix();
-        // glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 model = model1.getModelMatrix();
 
         shader1.setUniform("projection", projection);
@@ -127,13 +125,7 @@ int main(){
         shader1.setUniform("model", model);
         model1.draw(shader1);
 
-        cubeLightShader.use();
-        model = glm::translate(model, glm::vec3(0.f, 2.f, 0.f));
-        cubeLightShader.setUniform("projection", projection);
-        cubeLightShader.setUniform("view", view);
-        cubeLightShader.setUniform("model", model);
-
-        // Actualisation de l'UI
+        // UI update
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
@@ -149,7 +141,7 @@ int main(){
         glfwPollEvents();
     }
 
-    // Fin d'IMGUI
+    // End of IMGUI
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
