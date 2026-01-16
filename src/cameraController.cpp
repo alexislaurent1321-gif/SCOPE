@@ -1,4 +1,4 @@
-#include "cameraController.h"
+#include "SCOPE/cameraController.h"
 #include <glad/glad.h>
 
 

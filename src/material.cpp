@@ -1,4 +1,4 @@
-// #include "material.h"
+// #include "SCOPE/material.h"
 
 // void Material::bind(const Shader& shader) const
 // {

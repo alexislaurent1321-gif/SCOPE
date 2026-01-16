@@ -1,7 +1,7 @@
 #ifndef CAMERA_CONTROLLER_H
 #define CAMERA_CONTROLLER_H
 
-#include "camera.h"
+#include "SCOPE/camera.h"
 
 /**
  * \brief This class contains variables for the user interface into the UIcamera class as well as methods for the input manager into the context class

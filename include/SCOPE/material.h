@@ -2,8 +2,8 @@
 #define MATERIAL_H
 
 #include <glm/glm.hpp>
-#include "Texture.h"
-#include "Shader.h"
+#include "SCOPE/Texture.h"
+#include "SCOPE/Shader.h"
 
 class Material {
 public:

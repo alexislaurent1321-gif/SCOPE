@@ -2,7 +2,7 @@
 #define VBO_H
 
 #include <glad/glad.h>
-#include "vertex.h"
+#include "SCOPE/vertex.h"
 
 /**
  * \brief Little class to create and manage a VBO

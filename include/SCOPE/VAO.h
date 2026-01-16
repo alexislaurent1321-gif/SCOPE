@@ -2,7 +2,7 @@
 #define VAO_H
 
 #include <glad/glad.h>
-#include "VBO.h"
+#include "SCOPE/VBO.h"
 
 /**
  * \brief Little class to create and manage a VAO

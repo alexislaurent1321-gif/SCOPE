@@ -1,4 +1,4 @@
-#include "camera.h"
+#include "SCOPE/camera.h"
 #include <algorithm>
 #include <iostream>
 

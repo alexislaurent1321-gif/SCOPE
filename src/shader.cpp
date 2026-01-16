@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "SCOPE/shader.h"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath){
     load(vertexPath, fragmentPath);

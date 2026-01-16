@@ -1,4 +1,4 @@
-#include "light.h"
+#include "SCOPE/light.h"
 
 
 Light::Light(glm::vec3 ambient_, glm::vec3 diffuse_, glm::vec3 specular_) : 

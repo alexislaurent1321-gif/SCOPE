@@ -1,7 +1,7 @@
 #ifndef UICAMERA_H
 #define UICAMERA_H
 
-#include "cameraController.h"
+#include "SCOPE/cameraController.h"
 #include <imgui.h>
 
 /**

@@ -13,17 +13,17 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
-#include "VBO.h"
-#include "VAO.h"
-#include "texture.h"
-#include "shader.h"
-#include "context.h"
-#include "light.h"
-#include "model.h"
+#include "SCOPE/VBO.h"
+#include "SCOPE/VAO.h"
+#include "SCOPE/texture.h"
+#include "SCOPE/shader.h"
+#include "SCOPE/context.h"
+#include "SCOPE/light.h"
+#include "SCOPE/model.h"
 
-#include "UICamera.h"
-#include "UILight.h"
-#include "UIModel.h"
+#include "SCOPE/UICamera.h"
+#include "SCOPE/UILight.h"
+#include "SCOPE/UIModel.h"
 
 
 // Frame

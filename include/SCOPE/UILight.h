@@ -1,7 +1,7 @@
 #ifndef UILIGHT_H
 #define UILIGHT_H
 
-#include "light.h"
+#include "SCOPE/light.h"
 #include <imgui.h>
 #include <vector>
 #include <memory>

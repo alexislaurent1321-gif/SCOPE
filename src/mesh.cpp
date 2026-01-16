@@ -1,4 +1,4 @@
-#include "mesh.h"
+#include "SCOPE/mesh.h"
 
 Mesh::Mesh(std::vector<Vertex> vertices_, std::vector<GLuint> indices_, std::vector<Texture> textures_) : 
     vertices(vertices_),

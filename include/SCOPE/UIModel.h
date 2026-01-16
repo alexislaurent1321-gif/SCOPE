@@ -1,7 +1,7 @@
 #ifndef UIMODEL_H
 #define UIMODEL_H
 
-#include "model.h"
+#include "SCOPE/model.h"
 #include <imgui.h>
 
 /**

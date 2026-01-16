@@ -13,8 +13,8 @@
 #include <assimp/postprocess.h>
 #include <assimp/matrix4x4.h>
 
-#include "mesh.h"
-#include "shader.h"
+#include "SCOPE/mesh.h"
+#include "SCOPE/shader.h"
 
 #include <string>
 #include <fstream>
