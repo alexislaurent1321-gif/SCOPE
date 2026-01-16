@@ -63,8 +63,7 @@ int main(){
     ImGui_ImplOpenGL3_Init("#version 330");
 
     // Shaders loading
-    // Shader shader1("resources/shaders/model_loading.vert", "resources/shaders/model_loading.frag");
-    Shader shader1("resources/shaders/lights.vert", "resources/shaders/lights.frag");
+    Shader shader1("resources/shaders/default_lights.vert", "resources/shaders/default_lights.frag");
     // Shader cubeLightShader("resources/shaders/light_cube.vert", "resources/shaders/light_cube.frag");
 
     // Models loading
