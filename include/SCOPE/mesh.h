@@ -19,7 +19,7 @@
 #include <glm/gtc/matrix_transform.hpp>
  
 /**
- * \brief Class to create or import and transform a mesh
+ * @brief Class to create or import and transform a mesh
  */
 class Mesh
 {
@@ -29,32 +29,32 @@ class Mesh
     std::vector<Texture> textures;  // 
 
     /**
-     * \brief Construct a mesh from the vertex datas, the index datas, and the material and the assigned material
+     * @brief Construct a mesh from the vertex datas, the index datas, and the material and the assigned material
      * 
-     * \param vertices_ vertex datas
-     * \param indices_ index datas_
-     * \param textures_ materials
+     * @param vertices_ vertex datas
+     * @param indices_ index datas_
+     * @param textures_ materials
      */
     Mesh(std::vector<Vertex> vertices_, std::vector<GLuint> indices_, std::vector<Texture> textures_);
 
     /**
-     * \brief Draw the mesh
+     * @brief Draw the mesh
      * 
-     * \param shader 
+     * @param shader 
      */
     void draw(Shader& shader);
 
     /**
-     * \brief Compute and return the model matrix
+     * @brief Compute and return the model matrix
      * 
-     * \return model matrix of the mesh
+     * @return model matrix of the mesh
      */
     glm::mat4 getModelMatrix();
 
     /**
-     * \brief Change the model matrix with an other model matrix
+     * @brief Change the model matrix with an other model matrix
      * 
-     * \param modelMatrix_ existing model matrix
+     * @param modelMatrix_ existing model matrix
      */
     void setModelMatrix(const glm::mat4& modelMatrix_);
 
@@ -64,7 +64,7 @@ class Mesh
     glm::mat4 modelMatrix;  // model matrix
 
     /**
-     * \brief Create an EBO and VBO and fill the VAO with vertex, UV, and normal datas
+     * @brief Create an EBO and VBO and fill the VAO with vertex, UV, and normal datas
      */
     void setup();     
 };

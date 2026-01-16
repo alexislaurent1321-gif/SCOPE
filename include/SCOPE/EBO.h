@@ -7,7 +7,7 @@
 typedef GLuint Index; // the indices are of type integer
 
 /**
- * \brief Little class to create and manage an EBO
+ * @brief Little class to create and manage an EBO
  */
 class EBO
 {
@@ -15,22 +15,22 @@ public:
 	GLuint ID;  // identifier of an EBO
 
     /**
-     * \brief EBO contructed by giving the indices of a mesh
+     * @brief EBO contructed by giving the indices of a mesh
      */
     EBO(std::vector<Index> indices);
 
     /**
-     * \brief Bind the EBO by initializing the identifier, create the buffer and assigning the storage space for the index datas
+     * @brief Bind the EBO by initializing the identifier, create the buffer and assigning the storage space for the index datas
      */
     void bind();
 
     /**
-     * \brief Unbind the EBO by assigning 0 to the identifier
+     * @brief Unbind the EBO by assigning 0 to the identifier
      */
     void unbind();
 
     /**
-     * \brief Delete the buffer
+     * @brief Delete the buffer
      */
     void deleteElement();
 };

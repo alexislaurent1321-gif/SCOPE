@@ -16,10 +16,34 @@ class Shader
 public:
     unsigned int ID;
 
+    /**
+     * @brief Construct a new Shader:: Shader object
+     * 
+     * @param vertexPath 
+     * @param fragmentPath 
+     */
     Shader(const char* vertexPath, const char* fragmentPath);
+
+    /**
+     * @brief Load a vertex shader and a fragment shader by given pathes
+     * 
+     * @param vertexPath 
+     * @param fragmentPath 
+     */
     void load(const char* vertexPath, const char* fragmentPath);
+
+    /**
+     * @brief Use the shader program corresponding to this
+     * 
+     */
     void use() const;
 
+    /**
+     * @brief Passing a variable to the shader (polymorphism for each type)
+     * 
+     * @param name 
+     * @param value 
+     */
     void setUniform(const std::string &name, bool value) const;
     void setUniform(const std::string &name, int value) const;
     void setUniform(const std::string &name, unsigned int value) const;

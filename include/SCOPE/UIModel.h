@@ -5,7 +5,7 @@
 #include <imgui.h>
 
 /**
- * \brief User interface to manage a chosen model in the scene
+ * @brief User interface to manage a chosen model in the scene
  */
 class UIModel{
 
