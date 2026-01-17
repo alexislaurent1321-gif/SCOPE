@@ -3,6 +3,8 @@
 
 #include "SCOPE/model.h"
 #include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 /**
  * @brief User interface to manage a chosen model in the scene

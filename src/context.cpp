@@ -10,14 +10,6 @@ void Context::init() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    // Loading of openGL
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return;
-    }
-    glEnable(GL_DEPTH_TEST); 
-
     window = glfwCreateWindow((int) (SCR_HEIGHT * aspectRatio), SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
     if (window == NULL){
         std::cout << "Failed to create GLFW window" << std::endl;

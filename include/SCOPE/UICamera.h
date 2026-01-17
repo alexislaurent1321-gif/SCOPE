@@ -3,6 +3,8 @@
 
 #include "SCOPE/cameraController.h"
 #include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
 
 /**
  * @brief class allowing control of the camera via ImGui

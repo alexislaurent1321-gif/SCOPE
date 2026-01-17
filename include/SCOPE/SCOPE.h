@@ -1,0 +1,11 @@
+#include "SCOPE/VBO.h"
+#include "SCOPE/VAO.h"
+#include "SCOPE/texture.h"
+#include "SCOPE/shader.h"
+#include "SCOPE/context.h"
+#include "SCOPE/light.h"
+#include "SCOPE/model.h"
+
+#include "SCOPE/UICamera.h"
+#include "SCOPE/UILight.h"
+#include "SCOPE/UIModel.h"
