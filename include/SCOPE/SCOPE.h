@@ -21,13 +21,10 @@ namespace SCOPE{
         ImGui_ImplOpenGL3_Init("#version 330");
     }
 
-    void UI_update(Context context){
-        // Initialization of IMGUI
-        IMGUI_CHECKVERSION();
-        ImGui::CreateContext();
-        ImGui::StyleColorsDark();
-        ImGui_ImplGlfw_InitForOpenGL(context.window, true);
-        ImGui_ImplOpenGL3_Init("#version 330");  
+    void UI_update(){
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
     }
 
     void UI_render(){
