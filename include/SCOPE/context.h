@@ -3,7 +3,7 @@
 
 #include <GLFW/glfw3.h>
 #include "SCOPE/cameraController.h"
-
+#include <glad/glad.h>
 
 #include <iostream>
 
