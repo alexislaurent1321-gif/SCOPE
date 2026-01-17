@@ -30,7 +30,6 @@
 class Model {
 
 private:
-    Shader shader = Shader("resources/shaders/default_lights.vert", "resources/shaders/default_lights.frag");
 
     /**
      * @brief Load the model
@@ -95,14 +94,12 @@ public:
 
     // Constructors
     Model(std::string const &path);
-    void draw();
+    void draw(Shader& shader);
 
     // Transform
     void setPosition(glm::vec3 position_);
     void setOrientation(glm::vec3 orientation_);
     void setScale(glm::vec3 scale_);
-
-    void setShader(const Shader& shader_){shader = shader_;}
     
     /**
      * @brief Get the Model Matrix object
@@ -110,8 +107,6 @@ public:
      * @return glm::mat4 
      */
     glm::mat4 getModelMatrix() const;
-
-    Shader getShader() const{return shader;}
 };
 
 #endif
