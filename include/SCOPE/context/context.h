@@ -2,7 +2,7 @@
 #define CONTEXT_H
 
 #include <GLFW/glfw3.h>
-#include "SCOPE/cameraController.h"
+#include "SCOPE/controllers/cameraController.h"
 
 #include <iostream>
 
