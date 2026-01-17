@@ -1,13 +1,13 @@
 #ifndef MESH_H
 #define MESH_H
 
-#include "SCOPE/vertex.h"
+#include "SCOPE/model/datas/vertex.h"
 #include "SCOPE/shader.h"
 
-#include "SCOPE/texture.h"
-#include "SCOPE/VAO.h"
-#include "SCOPE/VBO.h"
-#include "SCOPE/EBO.h"
+#include "SCOPE/model/datas/texture.h"
+#include "SCOPE/model/datas/VAO.h"
+#include "SCOPE/model/datas/VBO.h"
+#include "SCOPE/model/datas/EBO.h"
 
 #include <vector>
 #include <iomanip>

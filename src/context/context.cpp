@@ -1,4 +1,4 @@
-#include "SCOPE/context.h"
+#include "SCOPE/context/context.h"
 
 Context::Context() : window(nullptr), cameraController() {} 
 

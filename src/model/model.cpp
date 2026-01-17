@@ -1,4 +1,4 @@
-#include "SCOPE/model.h"
+#include "SCOPE/model/model.h"
 
 Model::Model(std::string const &path){
     updateModelMatrix();
