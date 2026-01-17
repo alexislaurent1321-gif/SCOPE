@@ -5,7 +5,7 @@ Model::Model(std::string const &path){
     load(path);
 }
 
-void Model::draw(Shader &shader){
+void Model::draw(){
     for(Mesh& mesh : meshes){
         shader.setUniform("model", getModelMatrix() * mesh.getModelMatrix());
         mesh.draw(shader);
