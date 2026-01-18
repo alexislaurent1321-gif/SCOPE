@@ -2,7 +2,8 @@ This is a small beginner-level 3D rendering engine. It allows you to load a text
 
 
 Upcoming improvements:
-- loading multiple models
+- loading multiple 
+- loading models directly from the user interface
 - correcting class structure (dependency between context and scene)
 - unifying and improving user interface management
 - bug fixes (especially with regard to the suppression of light in the scene)
