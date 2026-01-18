@@ -33,24 +33,6 @@ struct PointLight {
 uniform int nbPointLights;
 uniform PointLight pointLights[MAX_SIZE];
 
-// struct SpotLight {
-//     vec3 position;
-//     vec3 direction;
-
-//     vec3 ambient;
-//     vec3 diffuse;
-//     vec3 specular;
-
-//     float constant;
-//     float linear;
-//     float quadratic;  
-
-//     float cutOff;
-//     float outerCutOff;
-// };   
-// uniform int nbSpotLights;
-// uniform SpotLight spotLights[MAX_SIZE];
-
 uniform vec3 viewPos;
 
 in vec3 Normal; 
@@ -75,10 +57,7 @@ void main()
         result += CalcDirLight(dirLights[i], norm, viewDir);
 
     for(int i = 0; i < nbPointLights; i++)
-        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);    
-    
-    // for(int i = 0; i < nbPointLights; i++)
-    //     result += CalcSpotLight(spotLight[i], norm, FragPos, viewDir);    
+        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);       
     
     FragColor = vec4(result, 1.0);
 }

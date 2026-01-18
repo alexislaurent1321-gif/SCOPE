@@ -1,15 +1,22 @@
+#ifndef SCOPE_H
+#define SCOPE_H
+
 #include "SCOPE/model/datas/VBO.h"
 #include "SCOPE/model/datas/VAO.h"
 #include "SCOPE/model/datas/texture.h"
 #include "SCOPE/model/model.h"
 
 #include "SCOPE/shader.h"
-#include "SCOPE/context/context.h"
 #include "SCOPE/light.h"
 
 #include "SCOPE/UIs/UICamera.h"
 #include "SCOPE/UIs/UILight.h"
 #include "SCOPE/UIs/UIModel.h"
+
+#include "SCOPE/context/context.h"
+#include "SCOPE/context/scene.h"
+
+
 
 namespace SCOPE{
 
@@ -51,3 +58,5 @@ namespace SCOPE{
     }
 
 }
+
+#endif

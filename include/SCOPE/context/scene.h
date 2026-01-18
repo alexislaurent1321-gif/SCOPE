@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <typeinfo>
 
 // namespace SCOPE {
 
@@ -16,21 +17,26 @@ class Shader;
 
 class Scene {
 public:
-    Scene();
+    Scene(){}
 
     // Adding elements to the scene
-    void addLight(std::shared_ptr<Light> light){
-        lights.push_back(light);
+    void add(PointLight light){
+        pointLights.push_back(std::make_shared<PointLight>(light));
     }
-    void setCamera(std::shared_ptr<Camera> camera_){
-        camera = camera_;
+    void add(DirLight light){
+        dirLights.push_back(std::make_shared<DirLight>(light));
     }
-    void setModel(std::shared_ptr<Model> model_){
-        model = model_;
+    void setCamera(Camera camera_){
+        camera = std::make_shared<Camera>(camera_);
+    }
+    void setModel(Model model_){
+        model = std::make_shared<Model>(model_);
     }
 
     // Scene render
     void render(Shader shader){
+
+        if(!camera) return;
 
         // Render
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -46,6 +52,16 @@ public:
         shader.setUniform("view", camera->getViewMatrix());
         shader.setUniform("model", model->getModelMatrix());
         model->draw(shader);
+
+        for (int i=0; i<pointLights.size(); i++){
+            pointLights[i]->apply(shader, i);
+        }
+        shader.setUniform("nbPointLights", (int) pointLights.size());
+
+        for (int i=0; i<dirLights.size(); i++){
+            dirLights[i]->apply(shader, i);
+        }
+        shader.setUniform("nbDirLights", (int) dirLights.size());
     }
 
     // getters
@@ -53,8 +69,12 @@ public:
         return model;
     }
 
-    const std::vector<std::shared_ptr<Light>>& getLights() const{
-        return lights;
+    std::vector<std::shared_ptr<PointLight>> getPointLights() const{
+        return pointLights;
+    }
+
+    std::vector<std::shared_ptr<DirLight>> getDirLights() const{
+        return dirLights;
     }
 
     std::shared_ptr<Camera> getCamera() const{
@@ -62,9 +82,10 @@ public:
     }
 
 private:
-    std::vector<std::shared_ptr<Light>> lights;
-    std::shared_ptr<Camera> camera;
-    std::shared_ptr<Model> model;
+    std::vector<std::shared_ptr<PointLight>> pointLights;
+    std::vector<std::shared_ptr<DirLight>> dirLights;
+    std::shared_ptr<Camera> camera = nullptr;
+    std::shared_ptr<Model> model = nullptr;
 };
 
 // } 

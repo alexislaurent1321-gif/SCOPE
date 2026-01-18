@@ -2,6 +2,8 @@
 #define UILIGHT_H
 
 #include "SCOPE/light.h"
+#include "SCOPE/context/scene.h"
+
 #include <imgui.h>
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
@@ -13,61 +15,61 @@
  */
 class UILight {
 public:
-    enum class LightType{Point, Directional};   
-
-    struct LightEntry {
-        LightType type;
-        std::unique_ptr<Light> light;
-    };
-
-    std::vector<LightEntry> lights;
 
     UILight() = default;
 
-    // Put a light
-    void addLight(LightType type) {
-        LightEntry entry;
-        entry.type = type;
-
-        if (type == LightType::Point)
-            entry.light = std::make_unique<PointLight>();
-        else if (type == LightType::Directional)
-            entry.light = std::make_unique<DirLight>();
-
-        lights.push_back(std::move(entry));
-    }
-
     // ImGui Interface 
-    void draw() {
+    void draw(Scene* scene) {
+
         ImGui::Begin("Lights");
 
-        if (ImGui::Button("Ajouter PointLight"))
-            addLight(LightType::Point);
+        if (ImGui::Button("Add point light")){
+            PointLight pointLight;
+            scene->add(pointLight);
+        }
+
         ImGui::SameLine();
-        if (ImGui::Button("Ajouter DirectionalLight"))
-            addLight(LightType::Directional);
+        
+        if (ImGui::Button("Add directional light")){
+            DirLight dirLight;
+            scene->add(dirLight);
+        }
 
         ImGui::Separator();
 
-        for (int i = 0; i < lights.size(); ++i) {
-            auto &entry = lights[i];
+        for (int i=0; i < scene->getPointLights().size(); ++i) {
+
+            auto &entry = scene->getPointLights()[i];
             std::string label = "Light " + std::to_string(i);
 
             if (ImGui::CollapsingHeader(label.c_str())) {
 
                 // Delete button
                 if (ImGui::Button(("Delete##" + std::to_string(i)).c_str())) {
-                    lights.erase(lights.begin() + i);
+                    scene->getPointLights().erase(scene->getPointLights().begin() + i);
                     --i;
                     continue;
                 }
 
-                if (entry.type == LightType::Point) {
-                    drawPointLightUI(*static_cast<PointLight*>(entry.light.get()));
+                drawUI(*(scene->getPointLights()[i]));
+            }
+        }
+
+        for (int i=0; i < scene->getDirLights().size(); ++i) {
+
+            auto &entry = scene->getDirLights()[i];
+            std::string label = "Light " + std::to_string(i);
+
+            if (ImGui::CollapsingHeader(label.c_str())) {
+
+                // Delete button
+                if (ImGui::Button(("Delete##" + std::to_string(i)).c_str())) {
+                    scene->getDirLights().erase(scene->getDirLights().begin() + i);
+                    --i;
+                    continue;
                 }
-                else if (entry.type == LightType::Directional) {
-                    drawDirectionalLightUI(*static_cast<DirLight*>(entry.light.get()));
-                }
+
+                drawUI(*(scene->getDirLights()[i]));
             }
         }
 
@@ -76,24 +78,24 @@ public:
 
     // UI for each types of light
 
-    void drawPointLightUI(PointLight &l) {
-        ImGui::Text("PointLight");
-        ImGui::DragFloat3("Position", &l.position.x, 0.1f);
-        ImGui::ColorEdit3("Ambient", &l.ambient.x);
-        ImGui::ColorEdit3("Diffuse", &l.diffuse.x);
-        ImGui::ColorEdit3("Specular", &l.specular.x);
+    void drawUI(PointLight &l) {
+        ImGui::Text("point light");
+        ImGui::DragFloat3("position", &l.position.x, 0.1f);
+        ImGui::ColorEdit3("ambient", &l.ambient.x);
+        ImGui::ColorEdit3("diffuse", &l.diffuse.x);
+        ImGui::ColorEdit3("specular", &l.specular.x);
 
-        ImGui::DragFloat("Constant", &l.constant, 0.01f);
-        ImGui::DragFloat("Linear", &l.linear, 0.01f);
-        ImGui::DragFloat("Quadratic", &l.quadratic, 0.01f);
+        ImGui::DragFloat("constant", &l.constant, 0.01f);
+        ImGui::DragFloat("linear", &l.linear, 0.01f);
+        ImGui::DragFloat("quadratic", &l.quadratic, 0.01f);
     }
 
-    void drawDirectionalLightUI(DirLight &l) {
-        ImGui::Text("DirectionalLight");
-        ImGui::DragFloat3("Direction", &l.direction.x, 0.1f);
-        ImGui::ColorEdit3("Ambient", &l.ambient.x);
-        ImGui::ColorEdit3("Diffuse", &l.diffuse.x);
-        ImGui::ColorEdit3("Specular", &l.specular.x);
+    void drawUI(DirLight &l) {
+        ImGui::Text("directional light");
+        ImGui::DragFloat3("direction", &l.direction.x, 0.1f);
+        ImGui::ColorEdit3("ambient", &l.ambient.x);
+        ImGui::ColorEdit3("diffuse", &l.diffuse.x);
+        ImGui::ColorEdit3("specular", &l.specular.x);
     }
 };
 
