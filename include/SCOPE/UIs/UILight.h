@@ -19,57 +19,57 @@ public:
     UILight() = default;
 
     // ImGui Interface 
-    void draw(Scene* scene) {
+    void draw(Scene& scene) {
 
         ImGui::Begin("Lights");
 
         if (ImGui::Button("Add point light")){
             PointLight pointLight;
-            scene->add(pointLight);
+            scene.add(pointLight);
         }
 
         ImGui::SameLine();
         
         if (ImGui::Button("Add directional light")){
             DirLight dirLight;
-            scene->add(dirLight);
+            scene.add(dirLight);
         }
 
         ImGui::Separator();
 
-        for (int i=0; i < scene->getPointLights().size(); ++i) {
+        for (int i=0; i < scene.getPointLights().size(); ++i) {
 
-            auto &entry = scene->getPointLights()[i];
+            auto &entry = scene.getPointLights()[i];
             std::string label = "Light " + std::to_string(i);
 
             if (ImGui::CollapsingHeader(label.c_str())) {
 
                 // Delete button
                 if (ImGui::Button(("Delete##" + std::to_string(i)).c_str())) {
-                    scene->getPointLights().erase(scene->getPointLights().begin() + i);
+                    scene.getPointLights().erase(scene.getPointLights().begin() + i);
                     --i;
                     continue;
                 }
 
-                drawUI(*(scene->getPointLights()[i]));
+                drawUI(*(scene.getPointLights()[i]));
             }
         }
 
-        for (int i=0; i < scene->getDirLights().size(); ++i) {
+        for (int i=0; i < scene.getDirLights().size(); ++i) {
 
-            auto &entry = scene->getDirLights()[i];
+            auto &entry = scene.getDirLights()[i];
             std::string label = "Light " + std::to_string(i);
 
             if (ImGui::CollapsingHeader(label.c_str())) {
 
                 // Delete button
                 if (ImGui::Button(("Delete##" + std::to_string(i)).c_str())) {
-                    scene->getDirLights().erase(scene->getDirLights().begin() + i);
+                    scene.getDirLights().erase(scene.getDirLights().begin() + i);
                     --i;
                     continue;
                 }
 
-                drawUI(*(scene->getDirLights()[i]));
+                drawUI(*(scene.getDirLights()[i]));
             }
         }
 

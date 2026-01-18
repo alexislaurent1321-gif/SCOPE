@@ -9,11 +9,11 @@
 
 // namespace SCOPE {
 
-// Forward declarations to avoid unnecessary inclusions
-class Model;
-class Light;
-class Camera;
-class Shader;
+// // Forward declarations to avoid unnecessary inclusions
+// class Model;
+// class Light;
+// class Camera;
+// class Shader;
 
 class Scene {
 public:
@@ -34,8 +34,9 @@ public:
     }
 
     // Scene render
-    void render(Shader shader){
+    void render(Context& context, Shader& shader){
 
+        *camera = context.cameraController.camera;
         if(!camera) return;
 
         // Render
@@ -44,8 +45,7 @@ public:
 
         shader.use();
         shader.setUniform("viewPos", camera->Position);
-        float shininess = 1.;
-        shader.setUniform("material.shininess", shininess);
+        shader.setUniform("material.shininess", 1.f);
 
         // Space transformations for the vertex shader
         shader.setUniform("projection", camera->getProjectionMatrix());
