@@ -6,13 +6,15 @@
 
 typedef GLuint Index; // the indices are of type integer
 
+namespace SCOPE {
+
 /**
  * @brief Little class to create and manage an EBO
  */
 class EBO
 {
 public:
-	GLuint ID;  // identifier of an EBO
+	GLuint ID;  ///< identifier of an EBO
 
     /**
      * @brief EBO contructed by giving the indices of a mesh
@@ -51,6 +53,8 @@ inline void EBO::unbind(){
 
 inline void EBO::deleteElement(){
     glDeleteBuffers(1, &ID);
+}
+
 }
 
 #endif

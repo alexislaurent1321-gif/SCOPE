@@ -1,93 +1,78 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "SCOPE/SCOPE.h"
+#include "SCOPE/light.h"
+#include "SCOPE/model/model.h"
+#include "SCOPE/context/context.h"
+
 #include <vector>
 #include <memory>
 #include <string>
 #include <typeinfo>
 
-// namespace SCOPE {
+namespace SCOPE {
 
-// // Forward declarations to avoid unnecessary inclusions
-// class Model;
-// class Light;
-// class Camera;
-// class Shader;
-
+/**
+ * @brief Represents a scene in the 3D rendering pipeline.
+ * 
+ */
 class Scene {
 public:
-    Scene(){}
+    Scene() = default;
 
-    // Adding elements to the scene
-    void add(PointLight light){
-        pointLights.push_back(std::make_shared<PointLight>(light));
-    }
-    void add(DirLight light){
-        dirLights.push_back(std::make_shared<DirLight>(light));
-    }
-    void setCamera(Camera camera_){
-        camera = std::make_shared<Camera>(camera_);
-    }
-    void setModel(Model model_){
-        model = std::make_shared<Model>(model_);
-    }
+    /**
+     * @brief Adding point light to the scene
+     * @param light 
+     */
+    void add(PointLight light);
 
-    // Scene render
-    void render(Context& context, Shader& shader){
+    /**
+     * @brief Adding directional lights to the scene
+     * @param light   
+     */
+    void add(DirLight light);
 
-        *camera = context.cameraController.camera;
-        if(!camera) return;
+    /** @brief Sets the camera for the scene
+     * @param camera_
+     */
+    void setCamera(Camera camera_);
 
-        // Render
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    /** @brief Sets the model for the scene
+     * @param model_
+     */
+    void setModel(Model model_);
 
-        shader.use();
-        shader.setUniform("viewPos", camera->Position);
-        shader.setUniform("material.shininess", 1.f);
+    /**
+     * @brief Update the scene with the context
+     * 
+     * @param context 
+     */
+    void update(Context& context);
 
-        // Space transformations for the vertex shader
-        shader.setUniform("projection", camera->getProjectionMatrix());
-        shader.setUniform("view", camera->getViewMatrix());
-        shader.setUniform("model", model->getModelMatrix());
-        model->draw(shader);
-
-        for (int i=0; i<pointLights.size(); i++){
-            pointLights[i]->apply(shader, i);
-        }
-        shader.setUniform("nbPointLights", (int) pointLights.size());
-
-        for (int i=0; i<dirLights.size(); i++){
-            dirLights[i]->apply(shader, i);
-        }
-        shader.setUniform("nbDirLights", (int) dirLights.size());
-    }
-
+    /**
+     * @brief Render the scene with the context and the shader
+     * 
+     * @param context 
+     * @param shader 
+     */
+    void render(Context& context, Shader& shader);
+    
     // getters
-    std::shared_ptr<Model> getModel() const{
-        return model;
-    }
+    std::shared_ptr<Model> getModel() const;
 
-    std::vector<std::shared_ptr<PointLight>> getPointLights() const{
-        return pointLights;
-    }
+    std::vector<std::shared_ptr<PointLight>> getPointLights() const;
 
-    std::vector<std::shared_ptr<DirLight>> getDirLights() const{
-        return dirLights;
-    }
+    std::vector<std::shared_ptr<DirLight>> getDirLights() const;
 
-    std::shared_ptr<Camera> getCamera() const{
-        return camera;
-    }
+    std::shared_ptr<Camera> getCamera() const;
 
 private:
-    std::vector<std::shared_ptr<PointLight>> pointLights;
-    std::vector<std::shared_ptr<DirLight>> dirLights;
-    std::shared_ptr<Camera> camera = nullptr;
-    std::shared_ptr<Model> model = nullptr;
+    std::vector<std::shared_ptr<PointLight>> pointLights; ///< list of point lights in the scene
+    std::vector<std::shared_ptr<DirLight>> dirLights;    ///< list of directional lights in the scene
+    std::shared_ptr<Camera> camera = nullptr;               ///< camera of the scene
+    std::shared_ptr<Model> model = nullptr;              ///< model of the scene
 };
 
-// } 
+} 
 
 #endif

@@ -7,8 +7,10 @@
 
 #include "SCOPE/shader.h"
 
+namespace SCOPE {
+
 /**
- * @brief Class that manages the lights
+ * @brief Abstract class to represent a light with its common attributes
  */
 class Light {
 public:
@@ -138,5 +140,7 @@ class DirLight : public Light{
      */
     void apply(Shader& shader, int index, const std::string& name = "dirLights") const override;
 };
+
+}
 
 #endif

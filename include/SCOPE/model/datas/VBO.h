@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include "SCOPE/model/datas/vertex.h"
 
+namespace SCOPE {
+
 /**
  * @brief Little class to create and manage a VBO
  */
@@ -11,7 +13,7 @@ class VBO
 {
 public:
 
-	GLuint ID;  // identifier of a VBO
+	GLuint ID;  ///< identifier of a VBO
 
 	/**
      * @brief VBO contructed by giving the vertex datas of a mesh
@@ -50,6 +52,8 @@ inline void VBO::unbind(){
 
 inline void VBO::deleteBuffer(){
 	glDeleteBuffers(1, &ID);
+}
+
 }
 
 #endif

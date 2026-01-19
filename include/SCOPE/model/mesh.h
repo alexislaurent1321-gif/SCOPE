@@ -17,56 +17,62 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
+namespace SCOPE {
  
 /**
- * @brief Class to create or import and transform a mesh
+ * @brief Class to represent a mesh with its datas and methods to draw it
+ * 
  */
 class Mesh
 {
     public : 
-    std::vector<Vertex> vertices;   // vertices datas (vertices, UV, normals, colors)
-    std::vector<Index> indices;     // indices to draw triangles
-    std::vector<Texture> textures;  // 
+    std::vector<Vertex> vertices;  ///< vertex datas
+    std::vector<Index> indices;     ///< index datas
+    std::vector<Texture> textures;  ///< textures/materials
 
     /**
-     * @brief Construct a mesh from the vertex datas, the index datas, and the material and the assigned material
+     * @brief Constructor by giving the vertices, indices and textures of the mesh
      * 
-     * @param vertices_ vertex datas
-     * @param indices_ index datas_
-     * @param textures_ materials
+     * @param vertices_ 
+     * @param indices_ 
+     * @param textures_ 
      */
     Mesh(std::vector<Vertex> vertices_, std::vector<GLuint> indices_, std::vector<Texture> textures_);
 
     /**
-     * @brief Draw the mesh
+     * @brief Draw the mesh by binding appropriate textures and drawing the elements
      * 
      * @param shader 
      */
     void draw(Shader& shader);
 
     /**
-     * @brief Compute and return the model matrix
+     * @brief Get the model matrix of the mesh
      * 
-     * @return model matrix of the mesh
+     * @return glm::mat4 
      */
     glm::mat4 getModelMatrix();
 
     /**
-     * @brief Change the model matrix with an other model matrix
+     * @brief Set the model matrix of the mesh
      * 
-     * @param modelMatrix_ existing model matrix
+     * @param modelMatrix_ 
      */
     void setModelMatrix(const glm::mat4& modelMatrix_);
 
     private : 
     
-    VAO VAO;    // VAO
-    glm::mat4 modelMatrix;  // model matrix
+    VAO VAO;                  ///< Vertex Array Object    
+    glm::mat4 modelMatrix;  ///< model matrix
 
     /**
-     * @brief Create an EBO and VBO and fill the VAO with vertex, UV, and normal datas
+     * @brief Setup the mesh (create buffers and arrays)
+     * 
      */
     void setup();     
 };
+
+}
 
 #endif

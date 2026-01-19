@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <iostream>
 
+ namespace SCOPE {
+
 Camera::Camera()
     : Position{cameraDefault::Position},
       Target{cameraDefault::Target},
@@ -99,5 +101,5 @@ void Camera::updateCameraOrientation(){
     up = glm::cross(front, right);   
 }
 
-
+}
 

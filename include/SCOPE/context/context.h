@@ -8,25 +8,26 @@
 
 const unsigned int SCR_HEIGHT = 600;    // Default screen size
 
+namespace SCOPE {
+
 /**
  * @brief Class to initialize a window and manage the inputs
  */
 class Context {
 public:
-    GLFWwindow* window;                                         // pointer to a GLFW window (GLFW is programmed in C)
-    CameraController cameraController;                          // camera controller called by the inputs managed by the context
-    float aspectRatio = cameraController.camera.aspectRatio;    // aspect ratio to define the screen width by multiplying the screen height
+    GLFWwindow* window;                                         ///< pointer to a GLFW window (GLFW is programmed in C)
+    CameraController cameraController;                          ///< camera controller called by the inputs managed by the context
+    float aspectRatio = cameraController.camera.aspectRatio;    ///< aspect ratio to define the screen width by multiplying the screen height
 
-    float lastX = SCR_HEIGHT * aspectRatio / 2.0f;      // x cursor position of the last frame in centered screen space
-    float lastY = SCR_HEIGHT / 2.0f;                    // y cursor position of the last frame in centered screen space
+    float lastX = SCR_HEIGHT * aspectRatio / 2.0f;      ///< x cursor position of the last frame in centered screen space
+    float lastY = SCR_HEIGHT / 2.0f;                    ///< y cursor position of the last frame in centered screen space
+    float cursorX = SCR_HEIGHT * aspectRatio / 2.0f;    ///< x cursor position of the current frame in centered screen space
+    float cursorY = SCR_HEIGHT / 2.0f;                  ///< y cursor position of the current frame in centered screen space
 
-    float cursorX = SCR_HEIGHT * aspectRatio / 2.0f;    // x cursor position of the current frame in centered screen space
-    float cursorY = SCR_HEIGHT / 2.0f;                  // y cursor position of the current frame in centered screen space
-
-    bool firstMouse = true;             // true if the mouse is moving
-    bool leftButtonDown = false;        // true if the left button is  down
-    bool rightButtonDown = false;       // true if the right button is down
-    bool middleButtonDown = false;      // true if the middle button is down
+    bool firstMouse = true;             ///< true if the mouse is moving
+    bool leftButtonDown = false;        ///< true if the left button is  down
+    bool rightButtonDown = false;       ///< true if the right button is down
+    bool middleButtonDown = false;      ///< true if the middle button is down
 
     /**
      * @brief Default constructor of the context
@@ -58,12 +59,31 @@ public:
     static void mouse_callback(GLFWwindow* window, double mouseX, double mouseY);
 
     /**
-     * @brief 
+     * @brief Process the scroll input
+     * 
+     * @param window pointer to the window
+     * @param xoffset displacement on the x axis by scrolling
+     * @param yoffset displacement on the y axis by scrolling
      */
     static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
     
-    static void processInput(GLFWwindow* window, float deltaTime);
+    /**
+     * @brief Process all the inputs (keyboard and mouse) 
+     * 
+     * @param window pointer to the window
+     */
+    static void processInput(GLFWwindow* window);
 
+    /**
+     * @brief Callback function called when the window is resized
+     * 
+     * @param window pointer to the window
+     * @param width new width of the window
+     * @param height new height of the window
+     */
     static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 };
+
+}
+
 #endif

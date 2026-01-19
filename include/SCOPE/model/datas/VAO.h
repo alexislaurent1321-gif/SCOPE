@@ -4,6 +4,8 @@
 #include <glad/glad.h>
 #include "SCOPE/model/datas/VBO.h"
 
+namespace SCOPE {
+
 /**
  * @brief Little class to create and manage a VAO
  */
@@ -11,7 +13,7 @@ class VAO
 {
 public:
 
-	GLuint ID;  // identifier of a VAO
+	GLuint ID;  ///< identifier of a VAO
 
     /**
      * @brief Default constructor
@@ -60,6 +62,8 @@ inline void VAO::unbind(){
 
 inline void VAO::deleteArray(){
     glDeleteVertexArrays(1, &ID);
+}
+
 }
 
 #endif

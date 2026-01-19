@@ -1,10 +1,12 @@
 #include "SCOPE/context/context.h"
 
+namespace SCOPE {       
+
 Context::Context() : window(nullptr), cameraController() {} 
 
 void Context::init() {
 
-    // Initialisation de GLFW
+    // GLFW initialization
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -80,17 +82,18 @@ void Context::scroll_callback(GLFWwindow* window, double xoffset, double yoffset
                                                     SCR_HEIGHT);
 }
 
-void Context::processInput(GLFWwindow* window, float deltaTime) {
+void Context::processInput(GLFWwindow* window) {
     Context* context = static_cast<Context*>(glfwGetWindowUserPointer(window));
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
-// ---------------------------------------------------------------------------------------------
 void Context::framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     // make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     // glViewport(0, 0, width, height);
+}
+
 }

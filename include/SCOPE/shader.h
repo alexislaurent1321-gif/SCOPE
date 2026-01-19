@@ -11,13 +11,20 @@
 #include <sstream>
 #include <iostream>
 
+namespace SCOPE {
+
+/**
+ * @brief Class to manage a shader program
+ * @details class taken partly from the tutorial LearnOpenGL
+ * @see https://learnopengl.com/Getting-started/Shaders
+ */
 class Shader
 {
 public:
     unsigned int ID;
 
     /**
-     * @brief Construct a new Shader:: Shader object
+     * @brief Constructor by giving the path of the vertex shader and the fragment shader
      * 
      * @param vertexPath 
      * @param fragmentPath 
@@ -33,7 +40,7 @@ public:
     void load(const char* vertexPath, const char* fragmentPath);
 
     /**
-     * @brief Use the shader program corresponding to this
+     * @brief Use/activate the shader
      * 
      */
     void use() const;
@@ -59,7 +66,16 @@ public:
     void setUniform(const std::string &name, const glm::mat4 &mat) const;
 
 private:
+    /**
+     * @brief Check compilation errors of the shader
+     * 
+     * @param shader 
+     * @param type 
+     */
     void checkCompileErrors(GLuint shader, std::string type);
 };
+
+}
+
 #endif
 

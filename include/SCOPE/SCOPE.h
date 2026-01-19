@@ -20,6 +20,10 @@
 
 namespace SCOPE{
 
+    /**
+     * @brief Initialize OpenGL 
+     * 
+     */
     int openGL_init(){
         // Loading of openGL
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
@@ -30,6 +34,11 @@ namespace SCOPE{
         glEnable(GL_DEPTH_TEST); 
     }
 
+    /**
+     * @brief Initialize IMGUI
+     * 
+     * @param context 
+     */
     void UI_init(Context context){
         // Initialization of IMGUI
         IMGUI_CHECKVERSION();
@@ -39,22 +48,42 @@ namespace SCOPE{
         ImGui_ImplOpenGL3_Init("#version 330");
     }
 
+    /**
+     * @brief Update IMGUI frame
+     * 
+     */
     void UI_update(){
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
     }
 
+    /**
+     * @brief Render IMGUI frame
+     * 
+     */
     void UI_render(){
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     }
 
+    /**
+     * @brief Shutdown IMGUI
+     * 
+     */
     void UI_shutDown(){
         // End of IMGUI
         ImGui_ImplOpenGL3_Shutdown();
         ImGui_ImplGlfw_Shutdown();
         ImGui::DestroyContext();
+    }
+
+    /**
+     * @brief Shutdown GLFW
+     * 
+     */
+    void shutDown(){
+        glfwTerminate();
     }
 
 }

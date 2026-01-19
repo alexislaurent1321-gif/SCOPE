@@ -1,5 +1,7 @@
 #include "SCOPE/model/mesh.h"
 
+namespace SCOPE {
+
 Mesh::Mesh(std::vector<Vertex> vertices_, std::vector<GLuint> indices_, std::vector<Texture> textures_) : 
     vertices(vertices_),
     indices(indices_),
@@ -56,4 +58,6 @@ glm::mat4 Mesh::getModelMatrix(){
 
 void Mesh::setModelMatrix(const glm::mat4& modelMatrix_){
 	modelMatrix = modelMatrix_;
+}
+
 }

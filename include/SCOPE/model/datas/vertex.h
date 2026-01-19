@@ -3,15 +3,19 @@
 
 #include <glm/glm.hpp>
 
+namespace SCOPE {
+
 /**
- * @brief Vertex datas which contains position, UV, normal, tangent and bitangent datas
+ * @brief Structure to represent a vertex with its attributes
  */
 struct Vertex{
-    glm::vec3 position;
-    glm::vec2 UV;
-    glm::vec3 normal;
-    glm::vec3 tangent;
-    glm::vec3 bitangent;
+    glm::vec3 position; ///< position of the vertex
+    glm::vec2 UV;      ///< texture coordinates of the vertex
+    glm::vec3 normal;   ///< normal vector of the vertex
+    glm::vec3 tangent;  ///< tangent vector of the vertex
+    glm::vec3 bitangent;        ///< bitangent vector of the vertex
 };
+
+}
 
 #endif

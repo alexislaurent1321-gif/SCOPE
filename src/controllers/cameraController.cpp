@@ -1,6 +1,7 @@
 #include "SCOPE/controllers/cameraController.h"
 #include <glad/glad.h>
 
+namespace SCOPE {
 
 CameraController::CameraController(Camera& camera_) : camera(camera_) {}
 
@@ -47,4 +48,6 @@ void CameraController::ProcessMouseScrollAtCursor(float dz, float mouseX, float 
         float y_screen = ((mouseY / screenHeight) * 2 - 1);
         camera.zoom(dz, x_screen, y_screen);
     }  
+}
+
 }

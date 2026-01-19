@@ -7,13 +7,15 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+namespace SCOPE {
+
 /**
- * @brief class allowing control of the camera via ImGui
+ * @brief Class to create a UI for the camera controller
  */
 class UICameraController
 {
 public:
-    bool show = true;                               // we see the ImGui window if true
+    bool show = true;                ///< true if the UI is shown
 
     /**
      * @brief Default constructor
@@ -40,7 +42,8 @@ public:
 
             // Zoom to cursor if true
             ImGui::Checkbox("zoom to Cursor", &context.cameraController.zoomToCursor);
-            // ImGui::Checkbox("Orthographic projection", &cameraController->camera.projectionortho);
+
+            toggleEnum(context);
 
             ImGui::SliderFloat("FOV", &context.cameraController.camera.fov, 30.f, 90.f);
 
@@ -52,6 +55,20 @@ public:
 
         ImGui::End();
     }
+
+    /**
+     * @brief Toggle the projection enum between perspective and orthographic
+     * 
+     * @param context 
+     */
+    void toggleEnum(Context& context){
+        bool persp = (context.cameraController.camera.projection == PERSPECTIVE);
+        if(ImGui::Checkbox("Perspective", &persp)){
+            context.cameraController.camera.projection = persp ? PERSPECTIVE : ORTHOGRAPHIC;
+        }
+    }
 };
+
+}
 
 #endif

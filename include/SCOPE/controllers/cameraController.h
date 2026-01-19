@@ -3,6 +3,10 @@
 
 #include "SCOPE/camera.h"
 
+namespace SCOPE {
+
+    class Camera;
+
 /**
  * @brief This class contains variables for the user interface into the UIcamera class as well as methods for the input manager into the context class
  */
@@ -10,13 +14,22 @@ class CameraController {
 public:
     Camera camera;
 
-    float rotateSensitivity = 0.01f;
-    float panSensitivity = 0.001f;
-    float zoomSensitivity = 0.1f;
+    float rotateSensitivity = 0.01f;        ///< sensitivity of the rotation
+    float panSensitivity = 0.001f;          ///< sensitivity of the pan
+    float zoomSensitivity = 0.1f;        ///< sensitivity of the zoom
 
-    bool zoomToCursor = true;
+    bool zoomToCursor = true;            ///< true if the zoom is done to the cursor position
 
+    /**
+     * @brief Default constructor
+     */
     CameraController() = default;
+
+    /**
+     * @brief Constructor by giving a camera
+     * 
+     * @param camera_ 
+     */
     CameraController(Camera& camera_);
 
     /**
@@ -54,5 +67,7 @@ public:
     void ProcessMousePan(float dx, float dy);
 
 };
+
+}
 
 #endif

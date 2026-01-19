@@ -1,5 +1,7 @@
 #include "SCOPE/model/model.h"
 
+namespace SCOPE {   
+
 Model::Model(std::string const &path){
     updateModelMatrix();
     load(path);
@@ -201,13 +203,32 @@ void Model::updateModelMatrix(){
 }
 
 glm::mat4 Model::AiMat4ToGlm(const aiMatrix4x4* aiMat){
-	glm::mat4 mat;
-	mat[0][0] = (GLfloat)aiMat->a1; mat[0][1] = (GLfloat)aiMat->b1;  mat[0][2] = (GLfloat)aiMat->c1; mat[0][3] = (GLfloat)aiMat->d1;
-	mat[1][0] = (GLfloat)aiMat->a2; mat[1][1] = (GLfloat)aiMat->b2;  mat[1][2] = (GLfloat)aiMat->c2; mat[1][3] = (GLfloat)aiMat->d2;
-	mat[2][0] = (GLfloat)aiMat->a3; mat[2][1] = (GLfloat)aiMat->b3;  mat[2][2] = (GLfloat)aiMat->c3; mat[2][3] = (GLfloat)aiMat->d3;
-	mat[3][0] = (GLfloat)aiMat->a4; mat[3][1] = (GLfloat)aiMat->b4;  mat[3][2] = (GLfloat)aiMat->c4; mat[3][3] = (GLfloat)aiMat->d4;
+	
+    glm::mat4 mat;
+
+	mat[0][0] = (GLfloat)aiMat->a1; 
+    mat[0][1] = (GLfloat)aiMat->b1;  
+    mat[0][2] = (GLfloat)aiMat->c1; 
+    mat[0][3] = (GLfloat)aiMat->d1;
+	
+    mat[1][0] = (GLfloat)aiMat->a2; 
+    mat[1][1] = (GLfloat)aiMat->b2;  
+    mat[1][2] = (GLfloat)aiMat->c2; 
+    mat[1][3] = (GLfloat)aiMat->d2;
+	
+    mat[2][0] = (GLfloat)aiMat->a3; 
+    mat[2][1] = (GLfloat)aiMat->b3;  
+    mat[2][2] = (GLfloat)aiMat->c3; 
+    mat[2][3] = (GLfloat)aiMat->d3;
+	
+    mat[3][0] = (GLfloat)aiMat->a4; 
+    mat[3][1] = (GLfloat)aiMat->b4;  
+    mat[3][2] = (GLfloat)aiMat->c4; 
+    mat[3][3] = (GLfloat)aiMat->d4;
 
 	return mat;
+}
+
 }
 
     

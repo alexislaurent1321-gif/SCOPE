@@ -10,6 +10,10 @@
 #include <vector>
 #include <memory>
 
+namespace SCOPE {
+
+    class Scene;
+
 /**
  * @brief User interface to manage lights in the scene
  */
@@ -98,5 +102,7 @@ public:
         ImGui::ColorEdit3("specular", &l.specular.x);
     }
 };
+
+}
 
 #endif

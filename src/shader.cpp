@@ -1,5 +1,6 @@
 #include "SCOPE/shader.h"
 
+namespace SCOPE {
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath){
     load(vertexPath, fragmentPath);
@@ -117,12 +118,7 @@ void Shader::setUniform(const std::string &name, const glm::mat4 &mat) const{
     glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
 
-/**
- * @brief Return the error
- * 
- * @param shader 
- * @param type 
- */
+
 void Shader::checkCompileErrors(GLuint shader, std::string type){
     GLint success;
     GLchar infoLog[1024];
@@ -140,4 +136,6 @@ void Shader::checkCompileErrors(GLuint shader, std::string type){
             std::cout << "ERROR::PROGRAM_LINKING_ERROR of type: " << type << "\n" << infoLog << "\n -- --------------------------------------------------- -- " << std::endl;
         }
     }
+}
+
 }

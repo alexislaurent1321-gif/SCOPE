@@ -2,6 +2,8 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
+namespace SCOPE {
+
 Texture::Texture(){
     glGenTextures(1, &ID);  
 }
@@ -57,6 +59,6 @@ void Texture::unbind() const {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-
+}
 
 

@@ -1,5 +1,6 @@
 #include "SCOPE/light.h"
 
+namespace SCOPE {
 
 Light::Light(glm::vec3 ambient_, glm::vec3 diffuse_, glm::vec3 specular_) : 
 ambient(ambient_),
@@ -52,3 +53,4 @@ void DirLight::apply(Shader& shader, int index, const std::string& name) const {
     shader.setUniform(dirLight_str + ".specular", specular);
 }
 
+}

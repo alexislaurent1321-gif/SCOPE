@@ -20,6 +20,9 @@ namespace cameraDefault {
     inline constexpr float farPlane  = 100.f;   
 }
 
+namespace SCOPE {
+    class cameraController;
+
 /**
  * @brief Generic camera class allowing movement within the scene and zooming based on the depth of the object
  */
@@ -27,29 +30,29 @@ class Camera
 {
 public:
     // View
-    glm::vec3 Position;         // position of the camera
-    glm::vec3 Target;           // target of the camera
+    glm::vec3 Position;         ///< position of the camera
+    glm::vec3 Target;           ///< target of the camera
 
-    glm::vec3 up;               // unitary vector up to the camera
-    glm::vec3 front;            // unitary vector between the target and the position
-    glm::vec3 right;            // unitary vector right to the camera
+    glm::vec3 up;               ///< unitary vector up to the camera
+    glm::vec3 front;            ///< unitary vector between the target and the position
+    glm::vec3 right;            ///< unitary vector right to the camera
 
-    glm::vec3 RotationCenter;   // rotation center of the camera
-    float yaw = 0.f;            // horizontal rotation angle
-    float pitch = 0.f;          // vertical rotation angle
+    glm::vec3 RotationCenter;   ///< rotation center of the camera
+    float yaw = 0.f;            ///< horizontal rotation angle
+    float pitch = 0.f;          ///< vertical rotation angle
 
     // Projection
-    float nearPlane;            // clip near the camera
-    float farPlane;             // clip far to the camera
-    float fov;                  // field of view 
-    float aspectRatio;          // ratio of horizontal size divided by vertical size
-    Projection projection = PERSPECTIVE;    // projection method
+    float nearPlane;            ///< clip near the camera
+    float farPlane;             ///< clip far to the camera
+    float fov;                  ///< field of view 
+    float aspectRatio;          ///< ratio of horizontal size divided by vertical size
+    Projection projection = PERSPECTIVE;    ///< projection method
 
 
     Camera();
 
     /**
-     * @brief Lateral displacement of the camera
+     * @brief Pan the camera
      * 
      * @param dx displacement on the x axis
      * @param dy displacement on the y axis
@@ -112,8 +115,10 @@ private :
     /**
      * @brief Update the view matrix after a transformation
      */
-    void updateCameraOrientation(); // recalcul de la base de vue
+    void updateCameraOrientation(); 
 };
+
+}
 
 #endif
 
