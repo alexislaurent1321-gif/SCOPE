@@ -5,6 +5,7 @@ The project can be tested using the following demo :
 https://github.com/alexislaurent1321-gif/Model_loader.git
 
 ### Upcoming improvements:
+- loading non-textured models (handling of materials)
 - loading multiple models
 - loading models directly from the user interface
 - correcting class structure (dependency between context and scene)
