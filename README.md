@@ -27,6 +27,14 @@ cd vcpkg
 .\vcpkg install imgui
 .\vcpkg install assimp
 ```
+Use the following include paths in the `cpp_properties.json` : 
+```
+"includePath": [
+                "${workspaceFolder}/**",
+                "C:\\vcpkg\\installed\\x64-windows\\include",
+                "include/**"
+            ],
+```
 
 ## Compilation
 
