@@ -12,10 +12,10 @@
 #include "SCOPE/UIs/UICamera.h"
 #include "SCOPE/UIs/UILight.h"
 #include "SCOPE/UIs/UIModel.h"
+#include "SCOPE/UIs/UIManager.h"
 
 #include "SCOPE/context/context.h"
 #include "SCOPE/context/scene.h"
-
 
 
 namespace SCOPE{
