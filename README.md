@@ -15,7 +15,7 @@ https://github.com/alexislaurent1321-gif/Model_loader.git
 # Installation
 
 ## Dependencies
-The library uses the vcpkg package manager to load external libraries. To install, install vcpkg in the C:/ folder.
+The library uses the vcpkg package manager to load external libraries. To install, install **vcpkg** in the `C:/` folder.
 Then, install the libraries using the following instructions :
 
 ```bash
@@ -39,7 +39,7 @@ Use the following include paths in the `cpp_properties.json` :
 
 ## Compilation
 
-Compilation on Windows, preferably with MSVC. Use the vscode interface if possible
+Compilation on Windows, preferably with **MSVC**. Use the **VS Code** interface if possible
 
 ## Credits
 This project uses code and concepts inspired by the following tutorials:
