@@ -44,7 +44,7 @@ public:
         for (int i=0; i < scene.getPointLights().size(); ++i) {
 
             auto &entry = scene.getPointLights()[i];
-            std::string label = "Light " + std::to_string(i);
+            std::string label = "point light " + std::to_string(i);
 
             if (ImGui::CollapsingHeader(label.c_str())) {
 
@@ -62,7 +62,7 @@ public:
         for (int i=0; i < scene.getDirLights().size(); ++i) {
 
             auto &entry = scene.getDirLights()[i];
-            std::string label = "Light " + std::to_string(i);
+            std::string label = "directional light " + std::to_string(i);
 
             if (ImGui::CollapsingHeader(label.c_str())) {
 

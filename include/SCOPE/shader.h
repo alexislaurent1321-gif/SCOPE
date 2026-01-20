@@ -15,7 +15,7 @@ namespace SCOPE {
 
 /**
  * @brief Class to manage a shader program
- * @details class taken partly from the tutorial LearnOpenGL
+ * @details shader class and default shaders taken partly from the tutorial LearnOpenGL
  * @see https://learnopengl.com/Getting-started/Shaders
  */
 class Shader

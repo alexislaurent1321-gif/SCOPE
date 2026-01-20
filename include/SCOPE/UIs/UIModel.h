@@ -32,6 +32,8 @@ public :
     if(!(scene.getModel())) return;
 
     if(ImGui::Begin("Model Inspector", &show)){
+
+        ImGui::Checkbox("Illuminated", &scene.getModel()->illuminated);
         
         ImGui::Text("Model parameters");
         ImGui::Separator();

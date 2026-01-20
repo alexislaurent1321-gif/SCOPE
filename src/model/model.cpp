@@ -12,6 +12,7 @@ void Model::draw(Shader& shader){
         shader.setUniform("model", getModelMatrix() * mesh.getModelMatrix());
         mesh.draw(shader);
     }
+    shader.setUniform("illuminated", illuminated);
 }
 
 // loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.

@@ -42,7 +42,7 @@ private:
     void load(std::string const &path);
 
     /**
-     * @brief 
+     * @brief Process a node in the Assimp scene graph
      * 
      * @param node 
      * @param scene 
@@ -51,7 +51,7 @@ private:
     void processNode(aiNode *node, const aiScene *scene, glm::mat4 parentTransform = glm::mat4(1.f));
     
     /**
-     * @brief 
+     * @brief Process a mesh and convert it to our Mesh class
      * 
      * @param mesh 
      * @param scene 
@@ -95,6 +95,8 @@ public:
     std::vector<Texture> textures;	      ///< loaded textures to avoid loading duplicates
     std::vector<Mesh> meshes;       ///< meshes composing the model
     std::string directory;            ///< directory of the model file
+
+    bool illuminated = true;    ///< whether the model is affected by lights
 
     // Constructors
     
