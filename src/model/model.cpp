@@ -196,7 +196,7 @@ glm::mat4 Model::getModelMatrix() const{
 }
 
 void Model::updateModelMatrix(){
-    modelMatrix = glm::scale(glm::mat4(1.f), 0.1f * scale);
+    modelMatrix = glm::scale(glm::mat4(1.f), scale);
     modelMatrix = glm::rotate(modelMatrix, orientation.x, glm::vec3(1.f, 0.f, 0.f));
     modelMatrix = glm::rotate(modelMatrix, orientation.y, glm::vec3(0.f, 1.f, 0.f));
     modelMatrix = glm::rotate(modelMatrix, orientation.z, glm::vec3(0.f, 0.f, 1.f));
