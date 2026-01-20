@@ -30,7 +30,7 @@ public:
         if(!(&(context.cameraController) || !show))
             return;
 
-        if(ImGui::Begin("Camera cameraController", &show))
+        if(ImGui::Begin("Camera", &show))
         {
             ImGui::Text("Camera Settings");
             ImGui::Separator();

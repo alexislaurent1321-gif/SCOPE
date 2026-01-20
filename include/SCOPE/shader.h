@@ -29,7 +29,7 @@ public:
      * @param vertexPath 
      * @param fragmentPath 
      */
-    Shader(const char* vertexPath, const char* fragmentPath);
+    Shader(const char* vertexPath = "resources/shaders/default.vert", const char* fragmentPath = "resources/shaders/default.frag");
 
     /**
      * @brief Load a vertex shader and a fragment shader by given pathes

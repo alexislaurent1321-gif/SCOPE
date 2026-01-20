@@ -12,7 +12,7 @@ void Context::init() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow((int) (SCR_HEIGHT * aspectRatio), SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+    window = glfwCreateWindow((int) (SCR_HEIGHT * aspectRatio), SCR_HEIGHT, "SCOPE", NULL, NULL);
     if (window == NULL){
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
@@ -26,7 +26,6 @@ void Context::init() {
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetMouseButtonCallback(window, mouse_button_callback);
-
 
     // Tell GLFW to capture the mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
