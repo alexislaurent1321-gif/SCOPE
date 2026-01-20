@@ -41,7 +41,7 @@ Use the following include paths in the `cpp_properties.json` :
 
 Compilation on Windows, preferably with **MSVC**. Use the **VS Code** interface if possible
 
-## Credits
+# Credits
 This project uses code and concepts inspired by the following tutorials:
 - **[LearnOpenGL](https://learnopengl.com/)** by Joey de Vries.
   Code license : [MIT](https://opensource.org/licenses/MIT).
