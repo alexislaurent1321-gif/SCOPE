@@ -3,8 +3,7 @@
 # Presentation
 This is a small beginner-level 3D rendering engine. It allows you to load a textured model, add point lights and directional lights to the scene and will eventually be used for physical simulation projects in the near future. This is a personal project to improve my skills in the early stages of software development.
 
-The project can be tested using the following demo :
-https://github.com/alexislaurent1321-gif/Model_loader.git
+The project can be tested using the following [demo](https://github.com/alexislaurent1321-gif/Model_loader.git).
 
 ### Upcoming improvements:
 - loading non-textured models (handling of materials)
