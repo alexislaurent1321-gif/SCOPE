@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['compilation_0',['Compilation',['../index.html#autotoc_md4',1,'']]],
-  ['credits_1',['Credits',['../index.html#autotoc_md5',1,'']]]
+  ['code_20example_0',['Code example',['../index.html#autotoc_md2',1,'']]],
+  ['compilation_1',['Compilation',['../index.html#autotoc_md5',1,'']]],
+  ['credits_2',['Credits',['../index.html#autotoc_md6',1,'']]]
 ];

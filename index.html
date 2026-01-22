@@ -90,8 +90,61 @@ Upcoming improvements:</h3>
 <li>bug fixes (especially with regard to the suppression of light in the scene)</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+Code example</h1>
+<p>Here is a code example to load a model</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;SCOPE/SCOPE.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(){</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="classSCOPE_1_1Scene.html">SCOPE::Scene</a> scene;</div>
+<div class="line">    <a class="code hl_class" href="classSCOPE_1_1Context.html">SCOPE::Context</a> context;</div>
+<div class="line">    <a class="code hl_class" href="classSCOPE_1_1UIManager.html">SCOPE::UIManager</a> UI;</div>
+<div class="line">    </div>
+<div class="line">    context.<a class="code hl_function" href="classSCOPE_1_1Context.html#a2b5a3008dd21f903f265a855314398f0">init</a>();     <span class="comment">// initialization of the context</span></div>
+<div class="line">    UI.<a class="code hl_function" href="classSCOPE_1_1UIManager.html#a760b81e6b6027b140e870b84fd9910be">init</a>(context);    <span class="comment">// initialization of IMGUI</span></div>
+<div class="line">   </div>
+<div class="line">    <span class="comment">// OpenGL initialization (always after creating the OpenGL context)</span></div>
+<div class="line">    SCOPE::init();</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="classSCOPE_1_1Shader.html">SCOPE::Shader</a> shader(<span class="stringliteral">&quot;libs/SCOPE/resources/shaders/default.vert&quot;</span>, <span class="stringliteral">&quot;libs/SCOPE/resources/shaders/default.frag&quot;</span>);   <span class="comment">// default shader for the model</span></div>
+<div class="line">    <a class="code hl_class" href="classSCOPE_1_1Model.html">SCOPE::Model</a> model(<span class="stringliteral">&quot;models/survival_guitar_backpack/scene.gltf&quot;</span>);   <span class="comment">// loading a model</span></div>
+<div class="line">    model.setScale(glm::vec3(0.01f));   <span class="comment">// scaling the model</span></div>
+<div class="line">    </div>
+<div class="line">    <span class="comment">// Setting up the scene</span></div>
+<div class="line">    scene.<a class="code hl_function" href="classSCOPE_1_1Scene.html#aba8f231d53b365f8946bdda86d7ef289">setModel</a>(model);</div>
+<div class="line">    scene.<a class="code hl_function" href="classSCOPE_1_1Scene.html#ae02ed3c46d55884f72b26bfab4159e3f">setCamera</a>(<a class="code hl_class" href="classSCOPE_1_1Camera.html">SCOPE::Camera</a>());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Render loop</span></div>
+<div class="line">    <span class="keywordflow">while</span> (!glfwWindowShouldClose(context.<a class="code hl_variable" href="classSCOPE_1_1Context.html#a104925d339eaf2a7dc09821240e476f3">window</a>)){</div>
+<div class="line"> </div>
+<div class="line">        scene.<a class="code hl_function" href="classSCOPE_1_1Scene.html#a939c8cd981f2591bc73c0bdacb518ea4">update</a>(context);</div>
+<div class="line">        scene.<a class="code hl_function" href="classSCOPE_1_1Scene.html#a102035e04ff66dddf9113a8f19ab7782">render</a>(context, shader);</div>
+<div class="line">        UI.<a class="code hl_function" href="classSCOPE_1_1UIManager.html#abc38bc533e0c7a28e723b2bf0123eb45">draw</a>(scene, context);  <span class="comment">// Draw the UIs</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    UI.<a class="code hl_function" href="classSCOPE_1_1UIManager.html#a545bba83fe19fe2b8d3696c67601e08b">shutDown</a>();  <span class="comment">// Shutdown IMGUI</span></div>
+<div class="line">    SCOPE::shutDown();  <span class="comment">// Shutdown GLFW</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclassSCOPE_1_1Camera_html"><div class="ttname"><a href="classSCOPE_1_1Camera.html">SCOPE::Camera</a></div><div class="ttdoc">Generic camera class allowing movement within the scene and zooming based on the depth of the object.</div><div class="ttdef"><b>Definition</b> camera.h:30</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Context_html"><div class="ttname"><a href="classSCOPE_1_1Context.html">SCOPE::Context</a></div><div class="ttdoc">Class to initialize a window and manage the inputs.</div><div class="ttdef"><b>Definition</b> context.h:16</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Context_html_a104925d339eaf2a7dc09821240e476f3"><div class="ttname"><a href="classSCOPE_1_1Context.html#a104925d339eaf2a7dc09821240e476f3">SCOPE::Context::window</a></div><div class="ttdeci">GLFWwindow * window</div><div class="ttdoc">pointer to a GLFW window (GLFW is programmed in C)</div><div class="ttdef"><b>Definition</b> context.h:18</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Context_html_a2b5a3008dd21f903f265a855314398f0"><div class="ttname"><a href="classSCOPE_1_1Context.html#a2b5a3008dd21f903f265a855314398f0">SCOPE::Context::init</a></div><div class="ttdeci">void init()</div><div class="ttdoc">Init the context by using the input manager.</div><div class="ttdef"><b>Definition</b> context.cpp:7</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Model_html"><div class="ttname"><a href="classSCOPE_1_1Model.html">SCOPE::Model</a></div><div class="ttdoc">Class to represent a 3D model composed of meshes, with methods to load and draw it.</div><div class="ttdef"><b>Definition</b> model.h:33</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Scene_html"><div class="ttname"><a href="classSCOPE_1_1Scene.html">SCOPE::Scene</a></div><div class="ttdoc">Represents a scene in the 3D rendering pipeline.</div><div class="ttdef"><b>Definition</b> scene.h:19</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Scene_html_a102035e04ff66dddf9113a8f19ab7782"><div class="ttname"><a href="classSCOPE_1_1Scene.html#a102035e04ff66dddf9113a8f19ab7782">SCOPE::Scene::render</a></div><div class="ttdeci">void render(Context &amp;context, Shader &amp;shader)</div><div class="ttdoc">Render the scene with the context and the shader.</div><div class="ttdef"><b>Definition</b> scene.cpp:27</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Scene_html_a939c8cd981f2591bc73c0bdacb518ea4"><div class="ttname"><a href="classSCOPE_1_1Scene.html#a939c8cd981f2591bc73c0bdacb518ea4">SCOPE::Scene::update</a></div><div class="ttdeci">void update(Context &amp;context)</div><div class="ttdoc">Update the scene with the context.</div><div class="ttdef"><b>Definition</b> scene.cpp:19</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Scene_html_aba8f231d53b365f8946bdda86d7ef289"><div class="ttname"><a href="classSCOPE_1_1Scene.html#aba8f231d53b365f8946bdda86d7ef289">SCOPE::Scene::setModel</a></div><div class="ttdeci">void setModel(Model model_)</div><div class="ttdoc">Sets the model for the scene.</div><div class="ttdef"><b>Definition</b> scene.cpp:15</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Scene_html_ae02ed3c46d55884f72b26bfab4159e3f"><div class="ttname"><a href="classSCOPE_1_1Scene.html#ae02ed3c46d55884f72b26bfab4159e3f">SCOPE::Scene::setCamera</a></div><div class="ttdeci">void setCamera(Camera camera_)</div><div class="ttdoc">Sets the camera for the scene.</div><div class="ttdef"><b>Definition</b> scene.cpp:12</div></div>
+<div class="ttc" id="aclassSCOPE_1_1Shader_html"><div class="ttname"><a href="classSCOPE_1_1Shader.html">SCOPE::Shader</a></div><div class="ttdoc">Class to manage a shader program.</div><div class="ttdef"><b>Definition</b> shader.h:22</div></div>
+<div class="ttc" id="aclassSCOPE_1_1UIManager_html"><div class="ttname"><a href="classSCOPE_1_1UIManager.html">SCOPE::UIManager</a></div><div class="ttdoc">Class to manage all the UIs.</div><div class="ttdef"><b>Definition</b> UIManager.h:13</div></div>
+<div class="ttc" id="aclassSCOPE_1_1UIManager_html_a545bba83fe19fe2b8d3696c67601e08b"><div class="ttname"><a href="classSCOPE_1_1UIManager.html#a545bba83fe19fe2b8d3696c67601e08b">SCOPE::UIManager::shutDown</a></div><div class="ttdeci">void shutDown()</div><div class="ttdoc">Shutdown IMGUI.</div><div class="ttdef"><b>Definition</b> UIManager.h:74</div></div>
+<div class="ttc" id="aclassSCOPE_1_1UIManager_html_a760b81e6b6027b140e870b84fd9910be"><div class="ttname"><a href="classSCOPE_1_1UIManager.html#a760b81e6b6027b140e870b84fd9910be">SCOPE::UIManager::init</a></div><div class="ttdeci">void init(Context context)</div><div class="ttdoc">Initialize IMGUI.</div><div class="ttdef"><b>Definition</b> UIManager.h:42</div></div>
+<div class="ttc" id="aclassSCOPE_1_1UIManager_html_abc38bc533e0c7a28e723b2bf0123eb45"><div class="ttname"><a href="classSCOPE_1_1UIManager.html#abc38bc533e0c7a28e723b2bf0123eb45">SCOPE::UIManager::draw</a></div><div class="ttdeci">void draw(SCOPE::Scene &amp;scene, SCOPE::Context &amp;context)</div><div class="ttdoc">Draw all the UIs.</div><div class="ttdef"><b>Definition</b> UIManager.h:27</div></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Installation</h1>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 Dependencies</h2>
 <p>The library uses the vcpkg package manager to load external libraries. To install, install <b>vcpkg</b> in the <span class="tt">C:/</span> folder. Then, install the libraries using the following instructions :</p>
 <div class="fragment"><div class="line">cd /</div>
@@ -107,10 +160,10 @@ Dependencies</h2>
 <div class="line">                &quot;C:\\vcpkg\\installed\\x64-windows\\include&quot;,</div>
 <div class="line">                &quot;include/**&quot;</div>
 <div class="line">            ],</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Compilation</h2>
 <p>Compilation on Windows, preferably with <b>MSVC</b>. Use the <b>VS Code</b> interface if possible</p>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 Credits</h1>
 <p>This project uses code and concepts inspired by the following tutorials:</p><ul>
 <li><b><a href="https://learnopengl.com/">LearnOpenGL</a></b> by Joey de Vries. Code license : <a href="https://opensource.org/licenses/MIT">MIT</a>. Content license : <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>.</li>
