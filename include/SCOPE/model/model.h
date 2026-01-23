@@ -34,6 +34,8 @@ class Model {
 
 private:
 
+    float uniformScale = 1.f;   ///< uniform scale factor applied to the model
+
     /**
      * @brief Load a model from file
      * 
@@ -118,6 +120,7 @@ public:
     void setPosition(glm::vec3 position_);
     void setOrientation(glm::vec3 orientation_);
     void setScale(glm::vec3 scale_);
+    void setUniformScale(float scale_);
     
     /**
      * @brief Get the model matrix of the model
